@@ -6,6 +6,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@azure/identity": "^1.0.3",
+    "@azure/keyvault-secrets": "^4.0.2",
+    "azure-storage": "^2.10.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
