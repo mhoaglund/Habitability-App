@@ -2,7 +2,7 @@ var express = require('express');
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 var router = express.Router();
-
+const structureProvider = require('./structureProvider.js');
 const { v4: uuidv4 } = require('uuid');
 uuidv4();
 
@@ -25,6 +25,7 @@ router.post('/', payload, function(req, res, next) {
     "pic3" : req.files['pic3'][0],
     "note3" : req.body['note3'],
   }
+  structureProvider.intake(uploadRecord);
   res.send('Got a POST request')
   //TODO: intake image from form body
   //Upload to azure blob storage

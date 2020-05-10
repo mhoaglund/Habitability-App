@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var collectionRouter = require('./routes/collection')
 
 var app = express();
+const config = require('config');
+const app_config = config.get('appconfig');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

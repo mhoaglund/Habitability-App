@@ -1,0 +1,11 @@
+{
+    "appconfig":{
+        "blobaccount":"habdata",
+        "blobcontainer":"habdatablob",
+        "dbconfig":{
+            "host":"",
+            "port":"",
+            "dbname":""
+        }
+    }
+}
