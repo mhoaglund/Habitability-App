@@ -2,6 +2,7 @@
     "appconfig":{
         "blobaccount":"habdata",
         "blobcontainer":"habdatablob",
+        "tablecontainer":"habdatatable",
         "dbconfig":{
             "host":"",
             "port":"",
