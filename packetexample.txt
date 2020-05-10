@@ -1,0 +1,42 @@
+uploadRecord
+Object {
+    id: "d42d054a-f360-4924-82b4-2b81e572e33e",
+    uploaded: 1589145830923,
+    pic1: Object,
+    note1: "Hi",
+    pic2: undefined,
+    …
+}
+id: "d42d054a-f360-4924-82b4-2b81e572e33e"
+note1: "Hi"
+note2: ""
+note3: ""
+pic1: Object {
+    fieldname: "pic1",
+    originalname: "snippet.PNG",
+    encoding: "7bit",
+    …
+}
+destination: "uploads/"
+encoding: "7bit"
+fieldname: "pic1"
+filename: "42cf0b90-7754-42c7-b206-567e38ad21a5.png"
+mimetype: "image/png"
+originalname: "snippet.PNG"
+path: "uploads\42cf0b90-7754-42c7-b206-567e38ad21a5.png"
+size: 34943
+__proto__: Object {
+    constructor: ,
+    __defineGetter__: ,
+    __defineSetter__: ,
+    …
+}
+pic2: undefined
+pic3: undefined
+uploaded: 1589145830923
+__proto__: Object {
+    constructor: ,
+    __defineGetter__: ,
+    __defineSetter__: ,
+    …
+}
