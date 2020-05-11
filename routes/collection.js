@@ -16,7 +16,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 var router = express.Router();
-const structureProvider = require('.././structureProvider.js');
 const asHandler = require('.././azureServiceHandler.js');
 
 /* GET home page. */
@@ -30,7 +29,7 @@ router.post('/', payload, function(req, res, next) {
   //TODO improve this so we can handle missing images or single uploads
   var uploadRecord = {
     "id" : uuidv4(),
-    "uploaded" : Date.now(),
+    "uploaded": new Date().getTime(),
     "pic1": req.files['pic1'] ? req.files['pic1'][0] : undefined,
     "note1": req.body['note1'] ? req.body['note1'] : "",
     "pic2": req.files['pic2'] ? req.files['pic2'][0] : undefined,
@@ -47,5 +46,9 @@ router.post('/', payload, function(req, res, next) {
   //Upload to azure blob storage
   //Add to real-time queue
 });
+
+router.get('/', function(req,res,next){
+  //TODO: retrieve a certain number of most recent posts
+})
 
 module.exports = router;
