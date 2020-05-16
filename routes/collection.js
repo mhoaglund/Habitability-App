@@ -26,25 +26,30 @@ var payload = upload.fields([
 ]);
 
 router.post('/', payload, function(req, res, next) {
-  //TODO improve this so we can handle missing images or single uploads
+  var date = new Date();
+  var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+    date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
   var uploadRecord = {
     "id" : uuidv4(),
-    "uploaded": new Date().getTime(),
+    "uploaded": new Date(now_utc),
     "pic1": req.files['pic1'] ? req.files['pic1'][0] : undefined,
-    "note1": req.body['note1'] ? req.body['note1'] : "",
+    "note1": req.body['note1'] ? {field: 'note1', note: req.body['note1']} : "",
     "pic2": req.files['pic2'] ? req.files['pic2'][0] : undefined,
-    "note2": req.body['note2'] ? req.body['note2'] : "",
-    "pic3": req.files['pic3'] ? req.files['pic3'][0] : undefined,
-    "note3": req.body['note3'] ? req.body['note3'] : "",
+    "note2": req.body['note2'] ? {field: 'note2', note: req.body['note2']} : ""
   }
-  if(asHandler.structuredImport(uploadRecord)){
-    res.send("Upload done.")
-  } else {
-    res.send("We had an issue.")
-  }
-  //TODO: intake image from form body
-  //Upload to azure blob storage
-  //Add to real-time queue
+  asHandler.structuredImport(uploadRecord, function(oallresult, metadata){
+    if (oallresult) {
+        res.send({
+          oall: "Success", 
+          metadata: metadata
+        })
+      } else {
+        res.send({
+          oall: "Failure",
+          metadata: metadata
+        })
+      }
+  })
 });
 
 router.get('/', function(req,res,next){

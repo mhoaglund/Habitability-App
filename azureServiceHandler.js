@@ -1,4 +1,5 @@
 var azure = require('azure-storage');
+var async = require('async');
 var blobService = azure.createBlobService();
 var tableService = azure.createTableService();
 var entGen = azure.TableUtilities.entityGenerator;
@@ -9,7 +10,7 @@ const {
 } = require('uuid');
 uuidv4();
 
-module.exports.structuredImport = function(_importPackage){
+module.exports.structuredImport = function(_importPackage, _cb){
     //TODO: call everything in order and alert the file minder
     var date = new Date();
     var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
@@ -19,27 +20,40 @@ module.exports.structuredImport = function(_importPackage){
         RowKey: entGen.String(_importPackage.id),
         uploaded: entGen.DateTime(new Date(now_utc))
     }
-    var pics = [_importPackage.pic1, _importPackage.pic2, _importPackage.pic3];
-    //TODO: flow control for this, we are breezing past it
-    pics.forEach(element => {
-        _row[element.fieldname] = entGen.String(element.filename);
-        if (blobUpload(element)) {
-            console.log("Uploaded a pic.")
-        }
-    });
-    var notes = [_importPackage.note1, _importPackage.note2, _importPackage.note3];
+
+    var notes = [_importPackage.note1, _importPackage.note2];
     notes.forEach(element => {
-        if(element != ""){
-            //TODO figure out how to persist field name to here so we can use it
-            //_row[element.fieldname] = entGen.String(element);
+        if (element.note != "") {
+            _row[element.field] = entGen.String(element.note);
         }
     });
+5
+    var pics = [_importPackage.pic1, _importPackage.pic2];
+    //TODO: flow control for this, we are breezing past it
+    async.each(pics, function(item, callback){
+        _row[item.fieldname] = entGen.String(item.filename);
+        if (blobUpload(item)) {
+            callback('Uploaded a file.');
+        }
+    }, function(err){
+        if (err) {
+            console.log("Upload loop error: " + err);
+        } else {
+            console.log("Upload loop is done");
+        }
+    });
+    // pics.forEach(element => {
+    //     _row[element.fieldname] = entGen.String(element.filename);
+    //     if (blobUpload(element)) {
+    //         console.log("Uploaded a pic.")
+    //     }
+    // });
+
     //TODO smoketest to see if this gets hit before the foreaches are done
-    if(tableUpload(_row)){
-        return true;
-    } else {
-        return false;
-    }
+    tableUpload(_row, function(result){
+        _cb(result);
+        // return result;
+    })
 }
 
 module.exports.getEntities = function(_timestamp, _pagebreak = null){
@@ -77,14 +91,14 @@ function blobUpload(_inputfile) {
 };
 
 //TODO investigate return value
-function tableUpload(_inputrow) {
-
+function tableUpload(_inputrow, callback) {
     tableService.insertEntity(config.get('appconfig.tablecontainer'), _inputrow, function (error, result, response) {
         if (!error) {
-            console.log("Add row success")
-            return true;
+            console.log(result)
+            callback(true, null);
         } else {
-            return false;
+            console.log(error)
+            callback(false, null);
         }
     });
 }
