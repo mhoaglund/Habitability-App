@@ -56,20 +56,22 @@ module.exports.structuredImport = function(_importPackage, _cb){
     })
 }
 
-module.exports.getEntities = function(_timestamp, _pagebreak = null){
+module.exports.getEntities = function(_pagebreak = null, _cb){
     if(_pagebreak){
         //TODO: pagination using id of last entry previously retrieved
         return undefined;
     }
-    if(!_timestamp){
+    if (!_pagebreak) {
             var query = new azure.TableQuery()
                 .top(5);
     }
 
-    tableService.queryEntities('mytable', query, null, function (error, result, response) {
+    tableService.queryEntities(config.get('appconfig.tablecontainer'), query, null, function (error, result, response) {
         if (!error) {
             // result.entries contains entities matching the query
-            return result.entries;
+            _cb(result.entries);
+        } else {
+            _cb("Nope");
         }
     });
 }

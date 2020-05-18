@@ -53,7 +53,13 @@ router.post('/', payload, function(req, res, next) {
 });
 
 router.get('/', function(req,res,next){
-  //TODO: retrieve a certain number of most recent posts
+  var pagebreak = "";
+  if(req.query.pagebreak){
+    pagebreak = req.query.pagebreak;
+  }
+  let posts = asHandler.getEntities(pagebreak, function(reply){
+      res.send(reply);
+  });
 })
 
 module.exports = router;
