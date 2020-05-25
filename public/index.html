@@ -6,7 +6,37 @@
   
 </head>
 <body>
-    <form action="/collection" method="post" enctype="multipart/form-data">
+  <main>
+    <aside id="floating_menu">
+      <a id="exit"></a>
+    </aside>
+    <section id="planet" class="expos frame">
+      <div class="text-frame">
+        <h3>A Planet</h3>
+        <h3>In quarantine</h3>
+      </div>
+    </section>
+    <section id="athome" class="expos frame">
+      <div class="text-frame">
+        <h3>Some of us are at homes.</h3>
+      </div>
+    </section>
+    <section id="athospitals" class="expos double-frame">
+      <div class="text-frame">
+        <h3>Some of us are at hospitals.</h3>
+        <h3>Some of us are saving our lives.</h3>
+      </div>
+    </section>
+    <section id="us" class="expos double-frame">
+      <div class="text-frame">
+        <h3>Some of us are feeding us.</h3>
+        <h3>Some of us are caring us.</h3>
+      </div>
+    </section>
+    <section id="whoarewe" class="expos frame">
+    </section>
+    <section id="intake" class="intake-form">
+      <form action="/collection" method="post" enctype="multipart/form-data">
         <input type="file" name="pic1" accept="image/*" capture="">
         <label for="note1">Note 1:</label>
         <input type="text" id="note1" name="note1"><br><br>
@@ -15,8 +45,15 @@
         <input type="text" id="note2" name="note2"><br><br>
         <input type="submit" value="Upload">
       </form>
+    </section>
+    <section id="output" class="feed">
       <a id="retrieve" class="button">Retrieve Posts</a>
       <a id="retrieveMore" class="button">Retrieve More Posts</a>
+    </section>
+  </main>
+
+
+
       <script src="javascripts/main.js"></script>
 </body>
 </html>

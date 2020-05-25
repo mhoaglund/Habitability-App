@@ -1,5 +1,9 @@
+html,body{
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,4 +22,91 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+section.frame{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+section.double-frame {
+  width: 100vw;
+  height: 200vh;
+  background-color: black;
+  color: white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+section.expos .text-frame{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 2rem 1fr 2rem;
+  grid-template-rows: 1fr 1fr;
+}
+
+section#athospitals .text-frame {
+  grid-template-columns: 2rem 1fr 2rem;
+  grid-template-rows: 1fr 2rem;
+}
+
+section#athome .text-frame {
+  grid-template-rows: 1.3fr 2fr;
+}
+
+section#planet .text-frame {
+  grid-template-rows: 2fr 1fr 1fr;
+}
+
+section#us .text-frame {
+  grid-template-rows: 1fr 1fr 1fr 2rem;
+}
+
+section#us .text-frame {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 2rem 1fr 2rem;
+  grid-template-rows: 1fr 1fr 2rem;
+}
+
+section#us .text-frame,
+section#athome .text-frame,
+section#planet .text-frame {
+  align-items: end;
+}
+
+section.expos h3 {
+  font-weight: normal;
+  grid-column: 2;
+  text-align: center;
+  margin: 0;
+  font-size: 3rem;
+}
+
+section#planet{
+  background-image: url('../images/L/H_main01.jpg');
+}
+
+section#athome {
+  background-image: url('../images/L/H_main02.jpg');
+}
+
+section#athospitals {
+  background-image: url('../images/L/H_main03.jpg');
+}
+
+section#us {
+  background-image: url('../images/L/H_main04.jpg');
+}
+
+section#whoarewe {
+  background-image: url('../images/L/H_main05.jpg');
 }
