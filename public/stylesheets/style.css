@@ -1,3 +1,5 @@
+/* TODO orientation lock */
+
 html,body{
   padding: 0;
   margin: 0;
@@ -32,6 +34,7 @@ section.frame{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
+    margin-bottom: -1px;
 }
 
 section.double-frame {
@@ -42,6 +45,7 @@ section.double-frame {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-bottom: -1px;
 }
 
 section.expos .text-frame{
@@ -62,11 +66,11 @@ section#athome .text-frame {
 }
 
 section#planet .text-frame {
-  grid-template-rows: 2fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr 0.6fr;
 }
 
 section#us .text-frame {
-  grid-template-rows: 1fr 1fr 1fr 2rem;
+  grid-template-rows: 1.2fr 1.2fr 1fr 2rem;
 }
 
 section#us .text-frame {
@@ -109,4 +113,5 @@ section#us {
 
 section#whoarewe {
   background-image: url('../images/L/H_main05.jpg');
+  background-position: center bottom;
 }
