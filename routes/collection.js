@@ -54,11 +54,16 @@ router.post('/', payload, function(req, res, next) {
 
 router.get('/', function(req,res,next){
   var pagebreak = "";
-  if(req.query.pagebreak){
-    pagebreak = req.query.pagebreak;
-  }
-  let posts = asHandler.getEntities(pagebreak, function(reply){
-      res.send(reply);
+  // if(req.query.nextRowKey){
+  //   var clienttoken = {
+  //     nextRowKey: req.query.nextRowKey,
+  //     nextPartitionKey: req.query.nextPartitionKey,
+  //     targetLocation: req.query.targetLocation
+  //   }
+  // }
+  let posts = asHandler.getEntities(clienttoken, function (reply, token) {
+      res.append("Continuation-Token", JSON.stringify(token));
+      res.render('post-collection', { posts: reply });
   });
 })
 

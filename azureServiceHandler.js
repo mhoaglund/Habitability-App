@@ -42,13 +42,6 @@ module.exports.structuredImport = function(_importPackage, _cb){
             console.log("Upload loop is done");
         }
     });
-    // pics.forEach(element => {
-    //     _row[element.fieldname] = entGen.String(element.filename);
-    //     if (blobUpload(element)) {
-    //         console.log("Uploaded a pic.")
-    //     }
-    // });
-
     //TODO smoketest to see if this gets hit before the foreaches are done
     tableUpload(_row, function(result){
         _cb(result);
@@ -56,30 +49,54 @@ module.exports.structuredImport = function(_importPackage, _cb){
     })
 }
 
-module.exports.getEntities = function(_pagebreak = null, _cb){
-    if(_pagebreak){
-        //TODO: pagination using id of last entry previously retrieved
-        return undefined;
-    }
-    if (!_pagebreak) {
-            var query = new azure.TableQuery()
-                .top(5);
-    }
+//Continuation token stuff: https://coderead.wordpress.com/2012/08/20/handling-continuation-tokens-with-node-js-on-windows-azure-table-storage/
 
-    tableService.queryEntities(config.get('appconfig.tablecontainer'), query, null, function (error, result, response) {
+//TODO: skip the continuation token stuff for now. Save post timestamps as your token.
+//When a timestamp gets passed in, select where older than it, then manually orderby on the server.
+//Save the last timestamp in the new list and sned it.
+module.exports.getEntities = function(_clienttoken = null, _cb){
+    var query = new azure.TableQuery()
+        .top(5);
+
+    tableService.queryEntities(config.get('appconfig.tablecontainer'), query, _clienttoken, function (error, result, response) {
         if (!error) {
             // result.entries contains entities matching the query
-            _cb(result.entries);
+            if(result.continuationToken){
+                var token = result.continuationToken;
+            }
+            var cleaned = clean(result.entries);
+            _cb(cleaned, token);
         } else {
             _cb("Nope");
         }
     });
 }
 
+function clean(coll){
+    var simplified = [];
+    coll.forEach(entity => {
+        var new_entity = {};
+        if (entity.note1) {
+            new_entity.note1 = entity.note1["_"];
+        }
+        if (entity.note2) {
+            new_entity.note2 = entity.note2["_"];
+        }
+        if (entity.pic1) {
+            new_entity.pic1 = entity.pic1["_"];
+        }
+        if (entity.pic2) {
+            new_entity.pic2 = entity.pic2["_"];
+        }
+        new_entity.timestamp = entity.Timestamp["_"];
+        new_entity.id = entity.RowKey["_"];
+        simplified.push(new_entity);
+    });
+    return simplified;
+}
+
 //TODO: private getSecret for auth
 function blobUpload(_inputfile) {
-    //naming the image with a uuid.
-    //TODO: create a record in a table somwehere
     if(!_inputfile) return;
     blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path, function (error, result, response) {
         if (!error) {

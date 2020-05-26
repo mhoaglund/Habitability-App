@@ -3,6 +3,7 @@
 html,body{
   padding: 0;
   margin: 0;
+  background-color: black;
 }
 
 body {
@@ -12,6 +13,10 @@ body {
 a {
   color: #00B7FF;
   cursor: pointer;
+}
+
+.hidden{
+  display: none;
 }
 
 .button {
@@ -114,4 +119,70 @@ section#us {
 section#whoarewe {
   background-image: url('../images/L/H_main05.jpg');
   background-position: center bottom;
+}
+
+.post-body{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  margin-bottom: 2rem;
+}
+/* Flip Stuff https://stackoverflow.com/questions/38261931/implementing-flipcard-on-click-instead-of-on-hover */
+
+.flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back,
+.nonflip {
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+/* flip speed */
+.flipper {
+  transition: 0.8s;
+    width: 250px;
+    height: 250px;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 1px solid white;
+    box-shadow: 4px 3px 10px 0px #fff;
+}
+
+/* front pane, placed above back */
+.front, .nonflip {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.nonflip{
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg);
+  background-color: black;
+  display: flex;
+  flex-flow: column nowrap;
+  color: white;
+  align-items: center;
+  justify-content: center;
 }
