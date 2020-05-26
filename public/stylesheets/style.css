@@ -7,7 +7,7 @@ html,body{
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -97,7 +97,8 @@ section.expos h3 {
   grid-column: 2;
   text-align: center;
   margin: 0;
-  font-size: 3rem;
+  font-size: 4vmin;
+  letter-spacing: 0.55vmin;
 }
 
 section#planet{
@@ -137,16 +138,16 @@ section#whoarewe {
 .front,
 .back,
 .nonflip {
-  width: 250px;
-  height: 250px;
+  width: 33vw;
+  height: 33vw;
   position: relative;
 }
 
 /* flip speed */
 .flipper {
   transition: 0.8s;
-    width: 250px;
-    height: 250px;
+    width: 33vw;
+    height: 33vw;
   transform-style: preserve-3d;
   position: relative;
 }
@@ -185,4 +186,26 @@ section#whoarewe {
   color: white;
   align-items: center;
   justify-content: center;
+}
+
+/* Spinner */
+#spinner{
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: none;
+    align-items: center;
+    justify-content: center;
+  background-color: rgba(255,255,255,0.12);
+}
+
+.spinnerimage{
+  background-image: url('../images/24.gif');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  height: 4rem;
+  width: 4rem;
 }

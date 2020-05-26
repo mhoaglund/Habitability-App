@@ -31,10 +31,15 @@ module.exports.structuredImport = function(_importPackage, _cb){
     var pics = [_importPackage.pic1, _importPackage.pic2];
     //TODO: flow control for this, we are breezing past it
     async.each(pics, function(item, callback){
-        _row[item.fieldname] = entGen.String(item.filename);
-        if (blobUpload(item)) {
-            callback('Uploaded a file.');
+        if(item.fieldname){
+            _row[item.fieldname] = entGen.String(item.filename);
+            if (blobUpload(item)) {
+                callback('Uploaded a file.');
+            }
+        } else{
+            callback('Skipped a blank entry');
         }
+
     }, function(err){
         if (err) {
             console.log("Upload loop error: " + err);

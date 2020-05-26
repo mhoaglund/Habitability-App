@@ -1,4 +1,5 @@
 var token = undefined;
+var reachedEnd = false;
 
 $(document).ready(function () {
     $(document).on("click", "#retrieve", function () {
@@ -9,14 +10,34 @@ $(document).ready(function () {
         $(this).closest('.flip-container').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
     });
+
+    $('#intakeform').submit(function (e) {
+        e.preventDefault();
+        var form = $('#intakeform')[0];
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            enctype: "multipart/form-data",
+            url: "/collection",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 60000,
+            success: function(reply){
+                console.log(reply);
+            },
+            error: function(e){
+                console.log(e);
+            }
+        })
+    });
 });
 
+
+
 function retrievePosts(){
-    //TODO loading spinner
-    // $.get("/collection", function (data, xhr) {
-    //     alert(xhr.getResponseHeader("Continuation-Token"));
-    //     $("#output").append(data);
-    // });
+    $("#spinner").css({'display': 'flex'});
     var posts = $.ajax({
         type: 'GET',
         url: '/collection',
@@ -24,11 +45,18 @@ function retrievePosts(){
         dataType: 'html'
     });
     posts.done(function (data, textStatus, jqXHR) {
-        //console.log(jqXHR);
-        alert(jqXHR.getResponseHeader("Continuation-Token"));
-        token = $.parseJSON(jqXHR.getResponseHeader("Continuation-Token"));
-        console.log(token.nextRowKey);
+        if (jqXHR.getResponseHeader("Continuation-Token")){
+            token = $.parseJSON(jqXHR.getResponseHeader("Continuation-Token"));
+        } else {
+            reachedEnd = true;
+            console.log("Reached end of posts.");
+        }
         $("#output").append(data);
+    });
+    posts.always(function(){
+        $("#spinner").css({
+            'display': 'none'
+        });
     })
 }
 
