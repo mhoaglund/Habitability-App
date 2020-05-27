@@ -9,15 +9,18 @@ const {
     v4: uuidv4
 } = require('uuid');
 uuidv4();
+const maxDate = new Date(8640000000000000);
 
+//TODO: implement log tail pattern with reverse-tick row keys
 module.exports.structuredImport = function(_importPackage, _cb){
     //TODO: call everything in order and alert the file minder
+    var invertedTicks = String(8640000000000000 - Date.now()).padStart(20, '0');
     var date = new Date();
     var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
         date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
     var _row = {
         PartitionKey: entGen.String('submission'),
-        RowKey: entGen.String(_importPackage.id),
+        RowKey: entGen.String(invertedTicks),
         uploaded: entGen.DateTime(new Date(now_utc))
     }
 
@@ -47,21 +50,16 @@ module.exports.structuredImport = function(_importPackage, _cb){
             console.log("Upload loop is done");
         }
     });
-    //TODO smoketest to see if this gets hit before the foreaches are done
     tableUpload(_row, function(result){
-        _cb(result);
-        // return result;
+        _cb(result, invertedTicks);
     })
 }
 
 //Continuation token stuff: https://coderead.wordpress.com/2012/08/20/handling-continuation-tokens-with-node-js-on-windows-azure-table-storage/
-
-//TODO: skip the continuation token stuff for now. Save post timestamps as your token.
-//When a timestamp gets passed in, select where older than it, then manually orderby on the server.
-//Save the last timestamp in the new list and sned it.
 module.exports.getEntities = function(_clienttoken = null, _cb){
     var query = new azure.TableQuery()
-        .top(5);
+        .top(5)
+        .where('PartitionKey eq ?', 'submission');
 
     tableService.queryEntities(config.get('appconfig.tablecontainer'), query, _clienttoken, function (error, result, response) {
         if (!error) {
@@ -119,10 +117,10 @@ function tableUpload(_inputrow, callback) {
     tableService.insertEntity(config.get('appconfig.tablecontainer'), _inputrow, function (error, result, response) {
         if (!error) {
             console.log(result)
-            callback(true, null);
+            callback(true);
         } else {
             console.log(error)
-            callback(false, null);
+            callback(false);
         }
     });
 }

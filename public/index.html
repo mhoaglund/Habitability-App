@@ -56,7 +56,7 @@
               <i>+</i>Add
             </label>
           </div>
-          <input type="file" name="pic1" accept="image/*" capture="" id="first_pic">
+          <input type="file" name="pic1" accept="image/*" capture="" id="first_pic" onchange="loadFile(event)">
         </div>
 
         <div class="input-wrapper" id="secondpicwrapper">
@@ -65,7 +65,7 @@
               <i>+</i>Add
             </label>
           </div>
-          <input type="file" name="pic2" accept="image/*" capture="" id="second_pic">
+          <input type="file" name="pic2" accept="image/*" capture="" id="second_pic" onchange="loadFile(event)">
         </div>
 
         <div class="input-wrapper note" id="firstnotewrapper">
@@ -89,6 +89,25 @@
       </form>
     </section>
     <section id="output" class="feed">
+      <div id="" class="post-body own_post">
+        <p class="hidden"></p>
+        <div class="flip-container">
+          <div class="flipper">
+            <div id="first_pic_output"
+              style=""
+              class="front"></div>
+            <div class="back"><span>Another test comment here. what happens if it's too long?</span></div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div id="second_pic_output"
+              style=""
+              class="front"></div>
+            <div class="back"><span>Everything.</span></div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 

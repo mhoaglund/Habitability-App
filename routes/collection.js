@@ -41,12 +41,12 @@ router.post('/', payload, function(req, res, next) {
     if (oallresult) {
         res.send({
           oall: "Success", 
-          metadata: metadata
+          myrowkey: metadata
         })
       } else {
         res.send({
           oall: "Failure",
-          metadata: metadata
+          myrowkey: metadata
         })
       }
   })
