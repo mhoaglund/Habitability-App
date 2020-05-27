@@ -16,6 +16,12 @@ $(document).ready(function () {
         $(this).css('transform, rotateY(180deg)');
     });
 
+    $(document).on("click", '#notes', function () {
+        $(this).closest('.flip-container').toggleClass('hover');
+        $('.patchnotes').toggleClass('hidden');
+    });
+
+
     $(document).on('scroll', function () {
         if ($(window).scrollTop() + $(window).height() >= docheight) {
             if(!debouncing){

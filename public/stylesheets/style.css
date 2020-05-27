@@ -37,7 +37,7 @@ section.smframe{
   height: 100vh;
   background-color: black;
   color: white;
-  background-position: center center;
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: contain;
   margin-bottom: -1px;
@@ -77,7 +77,7 @@ section#athome .text-frame {
 }
 
 section#planet .text-frame {
-  grid-template-rows: 2fr 1fr 0.6fr;
+  grid-template-rows: 1.3fr 1fr 0.6fr;
 }
 
 section#us .text-frame {
@@ -341,4 +341,27 @@ section#intake form input[type="submit"] {
 .input-wrapper.note{
   grid-column-start: 1;
   grid-column-end: 4;
+}
+
+#notes_panel{
+  background: black;
+  color: white;
+  position: fixed;
+  right: 12px;
+  top: 12px;
+  padding-left: 12px;
+}
+
+#notes_panel a{
+  display: block;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid white;
+}
+
+#notes_panel .patchnotes{
+  background: white;
+  color: #1d4661;
+  font-size: 1.3rem;
+  padding: 1rem;
 }

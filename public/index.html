@@ -17,6 +17,41 @@
     <aside id="floating_menu">
       <a id="exit"></a>
     </aside>
+    <aside id="notes_panel">
+      <a id="notes" class="icon">?</a>
+      <div class="patchnotes hidden">
+      <h1>Status of Document</h1>
+      <ol>
+        <li>
+          -Input flow hasn't been established yet- we aren't asking questions when asking the user for an image, and we aren't taking them to a more evocative+instructive page as Peng has laid out. We should chat about this flow one more time, because I'm not certain which image is the source of truth right now.
+        </li>
+        <li>
+          -User's realtime experience (seeing immediate change in the site when entering images) isn't very good yet. We should chat about the finer points of that- it's good to show them a realtime view of the image they just took, but it kind of spoils the experience that they're meant to have when they first see their entry in the list.
+        </li>
+        <li>
+          -Landscape mode is a mess. We need to decide what to do there. It's not much effort to make that work, but we should mock it up.
+        </li>
+        <li>
+          -We don't have a high-quality "thanks for submitting!" message for the user. I think we should be deliberate about how that message leads them to the next step.
+        </li>
+        <li>
+          -As a user, I really want a way to 'zoom into' these pictures.
+        </li>
+        <li>
+          -There is no CDN set up currently, so performance won't be consistent everywhere.
+        </li>
+        <li>
+          -The user has to scroll to the bottom to retrieve older posts, and they come in batches of 10. We can control batch size. I think we need some kind of indication that they ought to scroll to the bottom.
+        </li>
+        <li>
+          -It's really easy to upload big images straight from the phone camera. If we're only ever going to display this site on a phone, I should create a service that shrinks the uploaded images. Effort isn't too bad on this.
+        </li>
+        <li>
+          -This has been free of cost so far.
+        </li>
+      </ol>
+      </div>
+    </aside>
     <aside id="spinner">
       <div class="spinnerimage"></div>
     </aside>
