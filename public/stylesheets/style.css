@@ -7,7 +7,7 @@ html,body{
 }
 
 body {
-  font: 14px "Open Sans", Helvetica, Arial, sans-serif;
+  font: 2rem "Open Sans", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -105,11 +105,11 @@ section#see{
     background-position: top center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 17vh;
+    height: 20vh;
 }
 
 section#intake{
-    background-image: url('../images/L/H_main07.jpg');
+    
     background-color: black;
     color: white;
     background-position: top center;
@@ -118,6 +118,7 @@ section#intake{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    margin-bottom: 4rem;
 }
 section#intake form{
       display: grid;
@@ -126,8 +127,18 @@ section#intake form{
 }
 
 section#intake #intakeform{
-  height: 100%;
+  height: auto;
   width: 70vw;
+}
+
+section#intake #intakeform .eye{
+  background-image: url(../images/L/H_main07.jpg);
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 section.expos h3 {
@@ -140,7 +151,7 @@ section.expos h3 {
   max-width: 50vmin;
 }
 
-label{
+label, input{
   letter-spacing: 0.55vmin;
 }
 
@@ -175,6 +186,12 @@ section#whoarewe {
 
 .flip-container.hover .flipper {
   transform: rotateY(180deg);
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+}
+
+.flip-container.hover .back {
+  z-index: 3;
 }
 
 .flip-container,
@@ -189,8 +206,8 @@ section#whoarewe {
 /* flip speed */
 .flipper {
   transition: 0.8s;
-    width: 33vw;
-    height: 33vw;
+  width: 33vw;
+  height: 33vw;
   transform-style: preserve-3d;
   position: relative;
 }
@@ -199,6 +216,7 @@ section#whoarewe {
 .front,
 .back {
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -229,6 +247,9 @@ section#whoarewe {
   color: white;
   align-items: center;
   justify-content: center;
+  z-index: 0;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 /* Spinner */
@@ -254,10 +275,13 @@ section#whoarewe {
 }
 
 .upload-btn{
-  background-image: url('../images/UI_svg/button_frame.svg');
+  /* background-image: url('../images/UI_svg/button_frame.svg');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  border: 1px solid white;
+  border-radius: 1.5rem;
+  height: 3rem;
   padding: 2vmin 4vmin;
   text-decoration: none;
   margin: 4px 2px;
@@ -277,6 +301,17 @@ input[type="submit"] {
   display: none;
 }
 
+input[type="text"]{
+  border: none;
+  background-color: black;
+  border-bottom: 2px solid white;
+  font-size: 2rem;
+  color: white;
+  -webkit-appearance: none;
+  font-family: 'Open Sans';
+  letter-spacing: ;
+}
+
 section#intake form input[type="submit"] {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -292,7 +327,7 @@ section#intake form input[type="submit"] {
 }
 
 #submitwrapper{
-  grid-row: 3;
+  grid-row: 5;
     grid-column-start: 1;
     grid-column-end: 4;
 }
@@ -303,4 +338,9 @@ section#intake form input[type="submit"] {
       justify-items: center;
       justify-content: center;
       text-align: center;
+      margin-top: 2rem;
+}
+.input-wrapper.note{
+  grid-column-start: 1;
+  grid-column-end: 4;
 }

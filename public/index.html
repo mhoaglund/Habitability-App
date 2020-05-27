@@ -49,27 +49,32 @@
     </section>
     <section id="intake" class="intake-form smframe">
       <form action="/collection" method="post" enctype="multipart/form-data" id="intakeform">
+        <div class="eye"></div>
         <div class="input-wrapper" id="firstpicwrapper">
           <div class="upload-btn">
             <label for="first_pic">
               <i>+</i>Add
             </label>
           </div>
-          <label for="note1">What do we lose?</label>
-          <input type="text" id="note1" name="note1">
           <input type="file" name="pic1" accept="image/*" capture="" id="first_pic">
         </div>
 
-        
         <div class="input-wrapper" id="secondpicwrapper">
           <div class="upload-btn">
             <label for="second_pic">
               <i>+</i>Add
             </label>
           </div>
+          <input type="file" name="pic2" accept="image/*" capture="" id="second_pic">
+        </div>
+
+        <div class="input-wrapper note" id="firstnotewrapper">
+          <label for="note1">What do we lose?</label>
+          <input type="text" id="note1" name="note1">
+        </div>
+        <div class="input-wrapper note" id="secondnotewrapper">
           <label for="note2">What do we gain?</label>
           <input type="text" id="note2" name="note2">
-          <input type="file" name="pic2" accept="image/*" capture="" id="second_pic">
         </div>
 
         <div class="input-wrapper" id="submitwrapper">

@@ -38,6 +38,10 @@ $(document).ready(function () {
             timeout: 60000,
             success: function(reply){
                 console.log(reply);
+                if (reply.oall === 'Success') {
+                    alert('Submission complete!');
+                    document.getElementById("intakeform").reset();
+                }
             },
             error: function(e){
                 console.log(e);
