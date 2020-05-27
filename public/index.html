@@ -45,20 +45,46 @@
     </section>
     <section id="whoarewe" class="expos frame">
     </section>
-    <section id="intake" class="intake-form">
+    <section id="see" class="expos">
+    </section>
+    <section id="intake" class="intake-form smframe">
       <form action="/collection" method="post" enctype="multipart/form-data" id="intakeform">
-        <input type="file" name="pic1" accept="image/*" capture="">
-        <label for="note1">Note 1:</label>
-        <input type="text" id="note1" name="note1"><br><br>
-        <input type="file" name="pic2" accept="image/*" capture="">
-        <label for="note2">Note 2:</label>
-        <input type="text" id="note2" name="note2"><br><br>
-        <input type="submit" value="Upload">
+        <div class="input-wrapper" id="firstpicwrapper">
+          <div class="upload-btn">
+            <label for="first_pic">
+              <i>+</i>Add
+            </label>
+          </div>
+          <label for="note1">What do we lose?</label>
+          <input type="text" id="note1" name="note1">
+          <input type="file" name="pic1" accept="image/*" capture="" id="first_pic">
+        </div>
+
+        
+        <div class="input-wrapper" id="secondpicwrapper">
+          <div class="upload-btn">
+            <label for="second_pic">
+              <i>+</i>Add
+            </label>
+          </div>
+          <label for="note2">What do we gain?</label>
+          <input type="text" id="note2" name="note2">
+          <input type="file" name="pic2" accept="image/*" capture="" id="second_pic">
+        </div>
+
+        <div class="input-wrapper" id="submitwrapper">
+          <div class="upload-btn">
+            <label for="submitall">
+              Submit
+            </label>
+          </div>
+          <input type="submit" value="Upload" id="submitall">
+        </div>
+
       </form>
     </section>
     <section id="output" class="feed">
       <a id="retrieve" class="button">Retrieve Posts</a>
-      <a id="retrieveMore" class="button">Retrieve More Posts</a>
     </section>
   </main>
 

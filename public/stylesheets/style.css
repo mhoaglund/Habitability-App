@@ -31,7 +31,8 @@ a {
   font-size: 16px;
 }
 
-section.frame{
+section.frame,
+section.smframe{
   width: 100vw;
   height: 100vh;
   background-color: black;
@@ -39,7 +40,11 @@ section.frame{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;
-    margin-bottom: -1px;
+  margin-bottom: -1px;
+}
+
+section.smframe{
+  height: auto;
 }
 
 section.double-frame {
@@ -59,6 +64,7 @@ section.expos .text-frame{
   height: 100%;
   grid-template-columns: 2rem 1fr 2rem;
   grid-template-rows: 1fr 1fr;
+    justify-items: center;
 }
 
 section#athospitals .text-frame {
@@ -92,12 +98,49 @@ section#planet .text-frame {
   align-items: end;
 }
 
+section#see{
+    background-image: url('../images/flip/H_main06_l.gif');
+    background-color: black;
+    color: white;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 17vh;
+}
+
+section#intake{
+    background-image: url('../images/L/H_main07.jpg');
+    background-color: black;
+    color: white;
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+section#intake form{
+      display: grid;
+      grid-template-rows: 14vh auto auto;
+      grid-template-columns: 1fr 4vh 1fr;
+}
+
+section#intake #intakeform{
+  height: 100%;
+  width: 70vw;
+}
+
 section.expos h3 {
   font-weight: normal;
   grid-column: 2;
   text-align: center;
   margin: 0;
   font-size: 4vmin;
+  letter-spacing: 0.55vmin;
+  max-width: 50vmin;
+}
+
+label{
   letter-spacing: 0.55vmin;
 }
 
@@ -208,4 +251,56 @@ section#whoarewe {
   background-position: center center;
   height: 4rem;
   width: 4rem;
+}
+
+.upload-btn{
+  background-image: url('../images/UI_svg/button_frame.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2vmin 4vmin;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-items: center;
+  justify-content: center;
+}
+
+.upload-btn label{
+  text-align: center;
+}
+
+input[type="file"],
+input[type="submit"] {
+  display: none;
+}
+
+section#intake form input[type="submit"] {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#firstpicwrapper{
+  grid-row: 2;
+}
+
+#secondpicwrapper {
+  grid-row: 2;
+  grid-column: 3;
+}
+
+#submitwrapper{
+  grid-row: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.input-wrapper{
+      display: flex;
+      flex-flow: column nowrap;
+      justify-items: center;
+      justify-content: center;
+      text-align: center;
 }

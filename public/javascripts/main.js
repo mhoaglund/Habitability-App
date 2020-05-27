@@ -1,6 +1,7 @@
 var token = undefined;
 var reachedEnd = false;
-
+var debouncing = false;
+var docheight = $(document).height() -5;
 $(document).ready(function () {
     $(document).on("click", "#retrieve", function () {
         retrievePosts();
@@ -10,6 +11,17 @@ $(document).ready(function () {
         $(this).closest('.flip-container').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
     });
+
+    $(document).on('scroll', function () {
+        if ($(window).scrollTop() + $(window).height() >= docheight) {
+            if(!debouncing){
+                console.log("bottom!");
+                if (!reachedEnd){
+                    retrievePosts();
+                }
+            }
+        }
+    })
 
     $('#intakeform').submit(function (e) {
         e.preventDefault();
@@ -38,6 +50,7 @@ $(document).ready(function () {
 
 function retrievePosts(){
     $("#spinner").css({'display': 'flex'});
+    debouncing = true;
     var posts = $.ajax({
         type: 'GET',
         url: '/collection',
@@ -57,6 +70,8 @@ function retrievePosts(){
         $("#spinner").css({
             'display': 'none'
         });
+        debouncing = false;
+        docheight = $(document).height() - 5;
     })
 }
 
