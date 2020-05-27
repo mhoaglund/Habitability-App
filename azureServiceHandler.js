@@ -31,7 +31,7 @@ module.exports.structuredImport = function(_importPackage, _cb){
     var pics = [_importPackage.pic1, _importPackage.pic2];
     //TODO: flow control for this, we are breezing past it
     async.each(pics, function(item, callback){
-        if(item.fieldname){
+        if(item && item.fieldname){
             _row[item.fieldname] = entGen.String(item.filename);
             if (blobUpload(item)) {
                 callback('Uploaded a file.');
