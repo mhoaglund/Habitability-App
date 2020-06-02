@@ -33,8 +33,8 @@ a {
 
 section.frame,
 section.smframe{
-  width: 100vw;
-  height: 100vh;
+  width: 100vmin;
+  height: 100vmax;
   background-color: black;
   color: white;
   background-position: center top;
@@ -48,8 +48,8 @@ section.smframe{
 }
 
 section.double-frame {
-  width: 100vw;
-  height: 200vh;
+  width: 100vmin;
+  height: 200vmax;
   background-color: black;
   color: white;
   background-position: center center;
@@ -85,7 +85,7 @@ section#us .text-frame {
   width: 100%;
   height: 100%;
   grid-template-columns: 2rem 1fr 2rem;
-  grid-template-rows: 1fr 1fr 1fr 2rem;
+  grid-template-rows: 1fr 1fr 0.7fr 2rem;
 }
 
 section#us .text-frame,
@@ -100,8 +100,9 @@ section#see{
     color: white;
     background-position: top center;
     background-repeat: no-repeat;
-    background-size: contain;
-    height: 20vh;
+    background-size: 100vmin;
+    height: 35vmin;
+    width: 100vmin;
 }
 
 section#intake{
@@ -118,23 +119,24 @@ section#intake{
 }
 section#intake form{
       display: grid;
-      grid-template-rows: 14vh auto auto;
-      grid-template-columns: 1fr 4vh 1fr;
+      grid-template-rows: auto auto auto;
+          grid-template-columns: 0.25fr 1fr 4vh 1fr 0.25fr;
 }
 
 section#intake #intakeform{
   height: auto;
-  width: 70vw;
+  width: 100vmin;
 }
 
 section#intake #intakeform .eye{
   background-image: url(../images/L/H_main07.jpg);
   grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-end: 6;
   grid-row: 1;
-  background-size: contain;
+  background-size: 100vmin;
   background-repeat: no-repeat;
   background-position: center center;
+  height: 32vmin;
 }
 
 section.expos h3 {
@@ -170,6 +172,7 @@ section#us {
 section#whoarewe {
   background-image: url('../images/L/H_main05.jpg');
   background-position: center bottom;
+  background-size: 100vmin;
 }
 
 .post-body{
@@ -307,7 +310,6 @@ input[type="text"]{
   color: white;
   -webkit-appearance: none;
   font-family: 'Open Sans';
-  letter-spacing: ;
 }
 
 section#intake form input[type="submit"] {
@@ -317,17 +319,19 @@ section#intake form input[type="submit"] {
 
 #firstpicwrapper{
   grid-row: 2;
+  grid-column: 2;
 }
 
 #secondpicwrapper {
   grid-row: 2;
-  grid-column: 3;
+  grid-column: 4;
+  
 }
 
 #submitwrapper{
   grid-row: 5;
-    grid-column-start: 1;
-    grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
 }
 
 .input-wrapper{
@@ -339,8 +343,8 @@ section#intake form input[type="submit"] {
       margin-top: 2rem;
 }
 .input-wrapper.note{
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
 }
 
 #notes_panel{
@@ -364,4 +368,13 @@ section#intake form input[type="submit"] {
   color: #1d4661;
   font-size: 1.3rem;
   padding: 1rem;
+}
+
+@media (orientation: landscape) {
+  main{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
+    align-items: center;
+  }
 }
