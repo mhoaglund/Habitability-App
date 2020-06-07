@@ -39,7 +39,7 @@ section.smframe{
   color: white;
   background-position: center top;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 55vmax;
   margin-bottom: -1px;
 }
 
@@ -69,7 +69,7 @@ section.expos .text-frame{
 
 section#athospitals .text-frame {
   grid-template-columns: 2rem 1fr 2rem;
-  grid-template-rows: 1fr 2rem;
+  grid-template-rows: 1fr auto;
 }
 
 section#athome .text-frame {
