@@ -41,6 +41,12 @@ $(document).ready(function () {
         formStepThree(senderid);
     });
 
+    $(document).on("click", '#skip', function () {
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $("#see").offset().top
+        }, 1000);
+    });
+
     $(document).on("click", '.ok', function () {
         var senderid = $(this).attr('id').split('-')[0];
         completeForm(senderid);

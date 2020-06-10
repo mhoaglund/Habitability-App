@@ -360,16 +360,6 @@ section#intake form input[type="submit"] {
   display: none;
 }
 
-
-#notes_panel{
-  background: black;
-  color: white;
-  position: fixed;
-  right: 12px;
-  top: 12px;
-  padding-left: 12px;
-}
-
 #notes_panel a{
   display: block;
   color: white;
@@ -511,6 +501,32 @@ textarea {
   text-align: center;
   padding-left: 5vmin;
   padding-right: 5vmin;
+}
+
+.skipform{
+    color: white;
+    position: fixed;
+    top: 2rem;
+    right: 2.7rem;
+}
+
+#skip{
+  display: block;
+}
+
+#skip .icon{
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 8rem;
+}
+
+#skip .icon p{
+  margin-right: -8px;
 }
 
 /* Animations */
