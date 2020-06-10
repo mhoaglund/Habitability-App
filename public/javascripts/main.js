@@ -4,14 +4,16 @@ var reachedEnd = false;
 var debouncing = false;
 var shouldShowOwn = false;
 var hasSubmitted = false;
-var docheight = $(document).height() -5;
+var docheight = $(document).height() -400;
+var showSubmit = false;
+
 $(document).ready(function () {
     $('.own_post').hide();
     $(document).on("click", "#retrieve", function () {
         retrievePosts();
     });
 
-    $(document).on("click", '.flip-container .flipper', function () {
+    $(document).on("click", '.flip-container.post .flipper, .own_post .flip-container .flipper', function () {
         $(this).closest('.flip-container').toggleClass('hover');
         $(this).css('transform, rotateY(180deg)');
     });
@@ -21,12 +23,35 @@ $(document).ready(function () {
         $('.patchnotes').toggleClass('hidden');
     });
 
+    $(document).on("click", '.flow-btn, .exit-btn', function () {
+        var senderid = $(this).attr('id').split('-')[1];
+        var targetid = '#' + senderid + '-formelement';
+        toggleFormElement(targetid);
+        if ($(this).attr('id').split('-')[0] === 'end'){
+            resetForm(senderid, true);
+            formStepOne(senderid);
+        }
+        if ($(this).attr('id').split('-')[0] === 'start') {
+            formStepOne(senderid);
+        }
+    });
+
+    $(document).on("click", '.next', function () {
+        var senderid = $(this).attr('id').split('-')[0];
+        formStepThree(senderid);
+    });
+
+    $(document).on("click", '.ok', function () {
+        var senderid = $(this).attr('id').split('-')[0];
+        completeForm(senderid);
+    });
 
     $(document).on('scroll', function () {
         if ($(window).scrollTop() + $(window).height() >= docheight) {
             if(!debouncing){
                 if (!reachedEnd && hasSubmitted) {
                     retrievePosts();
+                    deactivateForm();
                 }
             }
         }
@@ -53,17 +78,20 @@ $(document).ready(function () {
             success: function(reply){
                 console.log(reply);
                 if (reply.oall === 'Success') {
-                    alert('Submission complete!');
-                    document.getElementById("intakeform").reset();
+                    
                     if (reply.myrowkey){
                         //If we created a row, create a rule to hide it if it comes back from the server.
-                        //We're creating the realtime experience by showing the user's images in the feed.
+                        //We're creating the realtime experience by showing the user's images in the feed on the client.
                         myrowkey = reply.myrowkey;
-                        $('own_post').attr('id', myrowkey);
                         hasSubmitted = true;
-                        $("<style type='text/css'> #" + myrowkey + "{ display: none;} </style>").appendTo("head");
+                        $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
+                        
                     }
+                    retrievePosts();
                 }
+                displayOwnPost();
+                document.getElementById("intakeform").reset();
+                deactivateForm();
                 $("#spinner").css({
                     'display': 'none'
                 });
@@ -78,21 +106,140 @@ $(document).ready(function () {
     });
 });
 
+function deactivateForm(){
+    $('form input, form a').hide();
+    resetForm('first', true);
+    resetForm('second', true);
+    toggleFormElement('.thankyou');
+}
+
+function toggleFormElement(target){
+    $(target).toggleClass('fade-in');
+}
+
+function displayOwnPost(){
+    $('.own_post').css({display: 'grid'});
+    var firstnote = $("#first-note").val();
+    var secondnote = $("#second-note").val();
+    $('#first_pic_output').siblings('.back').find('span').html(firstnote);
+    $('#second_pic_output').siblings('.back').find('span').html(secondnote);
+}
+
+function resetForm(target, clear, resetall = false){
+    if(resetall){
+        //Dump form values
+        document.getElementById('intakeform').reset();
+    }
+    if (clear) {
+        var imagefield = '#' + target + '-pic';
+        var notefield = '#' + target + '-note';
+        var portal = '#' + target + '-portal';
+        var lowerportal = '#' + target + '-lower-portal';
+        $(imagefield).val("");
+        $(notefield).val("");
+        $(portal).attr('style', '');
+        $(lowerportal).attr('style', '');
+    }
+    if (showSubmit) {
+        showSubmit = false;
+    }
+    updateSubmitBtnState(showSubmit);
+}
+
+function completeForm(senderid) {
+    //TODO: set form back to default state but don't clear it.
+    //resetForm(senderid, false);
+    var targetid = '#' + senderid + '-formelement';
+    var initbtn = '#' + 'start-' + senderid + '-flow';
+    $(initbtn).html("+ Edit");
+    formStepOne(senderid);
+    toggleFormElement(targetid);
+}
+
 var loadFile = function (event) {
     if(!shouldShowOwn){
         shouldShowOwn = true;
-        $('.own_post').show();
     }
-    var show_element = '#' + event.target.id + '_output';
+    if(!showSubmit){
+        showSubmit = true;
+    }
+    updateSubmitBtnState(showSubmit);
+    var targetid = event.target.id.split('-')[0];
+    var portalid = '#' + event.target.id.split('-')[0] + '-portal';
+    var lowerportalid = '#' + event.target.id.split('-')[0] + '-lower-portal';
+    var ownpostid = '#' + targetid + '_pic_output';
     var imgurl = URL.createObjectURL(event.target.files[0])
-    $(show_element).css({
-        'background-image':'url('+imgurl+')'
-    })
+    $(portalid).css({
+        'background-image':'url('+ imgurl +')'
+    });
+    $(lowerportalid).css({
+        'background-image': 'url(' + imgurl + ')'
+    });
+    $(ownpostid).css({
+        'background-image': 'url(' + imgurl + ')'
+    });
+    formStepTwo(targetid);
 };
+
+function updateSubmitBtnState(dir){
+    if(dir){
+        $('#submitwrapper').show();
+    } else{
+        $('#submitwrapper').hide();
+    }
+}
+
+function formStepOne(target){
+    var portalid = '#' + target + '-portal';
+    var uploadbtnid = '#' + target + '-upload';
+    var nextbtn = '#' + target + '-next';
+    var okbtn = '#' + target + '-ok';
+
+    var notefield = '#' + target + 'notewrapper';
+    $(notefield).hide();
+    $(notefield).siblings('h3').show();
+
+    $(portalid).parents('.flip-container.formportal').removeClass('hover');
+    $(uploadbtnid).show();
+    $(nextbtn).hide();
+    $(okbtn).hide();
+}
+
+function formStepTwo(target) {
+    var portalid = '#' + target + '-portal';
+    var uploadbtnid = '#' + target + '-upload';
+    var nextbtn = '#' + target + '-next';
+    var okbtn = '#' + target + '-ok';
+
+    var notefield = '#' + target + 'notewrapper';
+    $(notefield).hide();
+    $(notefield).siblings('h3').show();
+
+    $(portalid).parents('.flip-container.formportal').removeClass('hover');
+    $(uploadbtnid).hide();
+    $(nextbtn).show();
+    $(okbtn).hide();
+}
+
+function formStepThree(target) {
+    var portalid = '#' + target + '-portal';
+    var uploadbtnid = '#' + target + '-upload';
+    var nextbtn = '#' + target + '-next';
+    var okbtn = '#' + target + '-ok';
+
+    var notefield = '#' + target + 'notewrapper';
+    $(notefield).show();
+    $(notefield).siblings('h3').hide();
+
+    $(portalid).parents('.flip-container.formportal').addClass('hover');
+    $(uploadbtnid).hide();
+    $(nextbtn).hide();
+    $(okbtn).show();
+}
 
 function retrievePosts(){
     $("#spinner").css({'display': 'flex'});
-    $('.own_post').hide();
+    // $('.own_post').hide();
     debouncing = true;
     var posts = $.ajax({
         type: 'GET',
@@ -114,7 +261,7 @@ function retrievePosts(){
             'display': 'none'
         });
         debouncing = false;
-        docheight = $(document).height() - 5;
+        docheight = $(document).height() - 400;
     })
 }
 
