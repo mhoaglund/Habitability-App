@@ -1,7 +1,7 @@
 each post in posts
   .post-body(id = post.id)
     p.hidden #{post.Timestamp}
-    if post.pic1 && post.note1
+    if (post.pic1 && post.note1)
       .flip-container.post
         .flipper
           if post.pic1
@@ -11,27 +11,13 @@ each post in posts
               span #{post.note1}
     else if post.pic1
       div.nonflip(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic1})'})
-    if post.pic2 && post.note2
+    if (post.pic2 && post.note2)
       .flip-container.post
         .flipper
-          if post.pic1
+          if post.pic2
             div.front(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
           if post.note2
             div.back
               span #{post.note2}
     else if post.pic2
       div.nonflip(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
-
-
-
-
-//- <div class="flip-container">
-//-   <div class="flipper">
-//-     <div class="front artist-1">
-//-       <!-- front content -->
-//-     </div>
-//-     <div class="back">
-//-       <p>You won</p>
-//-     </div>
-//-   </div>
-//- </div>
