@@ -28,8 +28,8 @@ $(document).ready(function () {
         var targetid = '#' + senderid + '-formelement';
         toggleFormElement(targetid);
         if ($(this).attr('id').split('-')[0] === 'end'){
-            resetForm(senderid, true);
-            formStepOne(senderid);
+            //resetForm(senderid, true);
+            //formStepOne(senderid);
         }
         if ($(this).attr('id').split('-')[0] === 'start') {
             formStepOne(senderid);
@@ -117,6 +117,7 @@ function deactivateForm(){
     resetForm('first', true);
     resetForm('second', true);
     toggleFormElement('.thankyou');
+    $('.skipform').hide();
 }
 
 function toggleFormElement(target){
@@ -129,6 +130,17 @@ function displayOwnPost(){
     var secondnote = $("#second-note").val();
     $('#first_pic_output').siblings('.back').find('span').html(firstnote);
     $('#second_pic_output').siblings('.back').find('span').html(secondnote);
+}
+
+function showEditButton(senderid, dir){
+    if(dir){
+            var initbtn = '#' + 'start-' + senderid + '-flow';
+            $(initbtn).html("+ Edit");
+    } else{
+            var initbtn = '#' + 'start-' + senderid + '-flow';
+            $(initbtn).html("+ Add");
+    }
+
 }
 
 function resetForm(target, clear, resetall = false){
@@ -145,6 +157,7 @@ function resetForm(target, clear, resetall = false){
         $(notefield).val("");
         $(portal).attr('style', '');
         $(lowerportal).attr('style', '');
+        showEditButton(target, false);
     }
     if (showSubmit) {
         showSubmit = false;
@@ -153,16 +166,15 @@ function resetForm(target, clear, resetall = false){
 }
 
 function completeForm(senderid) {
-    //TODO: set form back to default state but don't clear it.
-    //resetForm(senderid, false);
     var targetid = '#' + senderid + '-formelement';
-    var initbtn = '#' + 'start-' + senderid + '-flow';
-    $(initbtn).html("+ Edit");
     formStepOne(senderid);
     toggleFormElement(targetid);
 }
 
 var loadFile = function (event) {
+    if (!event.target.files[0]) {
+        return;
+    }
     if(!shouldShowOwn){
         shouldShowOwn = true;
     }
@@ -174,7 +186,9 @@ var loadFile = function (event) {
     var portalid = '#' + event.target.id.split('-')[0] + '-portal';
     var lowerportalid = '#' + event.target.id.split('-')[0] + '-lower-portal';
     var ownpostid = '#' + targetid + '_pic_output';
+    showEditButton(event.target.id.split('-')[0], true);
     var imgurl = URL.createObjectURL(event.target.files[0])
+    
     $(portalid).css({
         'background-image':'url('+ imgurl +')'
     });

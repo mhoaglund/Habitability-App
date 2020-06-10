@@ -27,6 +27,10 @@ h3{
   display: none;
 }
 
+#first-formelement{
+  z-index: 9999;
+}
+
 .button {
   background-color: #4CAF50;
   /* Green */
