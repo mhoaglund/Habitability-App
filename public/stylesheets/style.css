@@ -413,7 +413,7 @@ section#intake form input[type="submit"] {
   background-image: url('../images/H_close.jpg');
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   border-radius: 100%;
 }
 

@@ -1,3 +1,4 @@
+
 var token = undefined;
 var myrowkey = undefined;
 var reachedEnd = false;
@@ -39,6 +40,17 @@ $(document).ready(function () {
     $(document).on("click", '.next', function () {
         var senderid = $(this).attr('id').split('-')[0];
         formStepThree(senderid);
+    });
+
+    //Catch device key submission
+    $(document).keypress(function (e) {
+        if (e.keyCode == 13) {
+            var senderid = document.activeElement.id.split('-')[0];
+            document.activeElement.blur();
+            $("input").blur();
+            completeForm(senderid);
+            return false;
+        }
     });
 
     $(document).on("click", '#skip', function () {
@@ -84,7 +96,6 @@ $(document).ready(function () {
             success: function(reply){
                 console.log(reply);
                 if (reply.oall === 'Success') {
-                    
                     if (reply.myrowkey){
                         //If we created a row, create a rule to hide it if it comes back from the server.
                         //We're creating the realtime experience by showing the user's images in the feed on the client.
@@ -188,7 +199,14 @@ var loadFile = function (event) {
     var ownpostid = '#' + targetid + '_pic_output';
     showEditButton(event.target.id.split('-')[0], true);
     var imgurl = URL.createObjectURL(event.target.files[0])
-    
+
+    //https://github.com/exif-js/exif-js
+    // EXIF.getData(event.target.files[0], function () {
+    //     var make = EXIF.getTag(this, "Make");
+    //     var model = EXIF.getTag(this, "Model");
+    //     alert(`${make} ${model}`);
+    // });
+
     $(portalid).css({
         'background-image':'url('+ imgurl +')'
     });
