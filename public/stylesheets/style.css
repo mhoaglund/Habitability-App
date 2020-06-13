@@ -131,7 +131,7 @@ section#intake{
 }
 section#intake form{
       display: grid;
-      grid-template-rows: auto auto auto 14vmin;
+      grid-template-rows: auto auto auto 6vmin;
           grid-template-columns: 0.25fr 1fr 4vh 1fr 0.25fr;
 }
 
@@ -591,5 +591,62 @@ textarea {
 
   to {
     opacity: 1;
+  }
+}
+
+@media (orientation: landscape) {
+  .input-wrapper .portal {
+    width: 50vmin;
+    height: 50vmin;
+    background-image: url('../images/H_close.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+  }
+  .flip-container.formportal,
+  .flip-container.formportal .flipper {
+    width: 50vmin;
+    height: 50vmin;
+  }
+
+  .flip-container.formportal .back {
+    width: 50vmin;
+    height: 50vmin;
+  }
+
+  .cam-icon {
+    height: 3rem;
+    width: 3rem;
+    background-image: url(../images/UI_svg/SVG/camera.svg);
+    background-repeat: no-repeat;
+    margin: auto;
+  }
+
+  .next-icon {
+    height: 3rem;
+    width: 3rem;
+    background-image: url(../images/UI_svg/SVG/done_yes.svg);
+    background-repeat: no-repeat;
+    margin: auto;
+  }
+
+  .upload-btn.ok {
+    margin-top: 1.5rem;
+  }
+
+  .input-wrapper .note {
+    margin-top: 1rem;
+  }
+  .exit-btn,
+  .upload-btn {
+    font-size: 1.2rem;
+  }
+  .post-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    margin-bottom: 2rem;
+    column-gap: 2rem;
   }
 }
