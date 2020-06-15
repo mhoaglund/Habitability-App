@@ -100,6 +100,10 @@ section#us .text-frame {
   grid-template-rows: 1fr 1fr 0.7fr 2rem;
 }
 
+section#us .text-frame h3:first-child{
+  align-self: flex-start;
+}
+
 section#us .text-frame,
 section#athome .text-frame,
 section#planet .text-frame {
@@ -127,7 +131,7 @@ section#intake{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
 }
 section#intake form{
       display: grid;
@@ -212,11 +216,16 @@ section#whoarewe {
   background-size: 100vmin;
 }
 
+section#output{
+  width: 100vmin;
+  background-color: black;
+}
+
 .post-body{
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 /* Flip Stuff https://stackoverflow.com/questions/38261931/implementing-flipcard-on-click-instead-of-on-hover */
 
@@ -384,6 +393,31 @@ section#intake form input[type="submit"] {
     flex-flow: column nowrap;
     justify-items: center;
     align-items: center;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    background-color: grey;
+  }
+}
+
+@media only screen and (min-width: 1450px) {
+  .flip-container,
+  .front,
+  .back,
+  .nonflip {
+    width: 20vw;
+    height: 20vw;
+    position: relative;
+  }
+
+  .flipper {
+    transition: 0.8s;
+    width: 20vw;
+    height: 20vw;
+    transform-style: preserve-3d;
+    position: relative;
   }
 }
 
@@ -646,7 +680,7 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     column-gap: 2rem;
   }
 }

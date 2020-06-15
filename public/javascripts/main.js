@@ -5,13 +5,18 @@ var reachedEnd = false;
 var debouncing = false;
 var shouldShowOwn = false;
 var hasSubmitted = false;
-var docheight = $(document).height() -400;
+var docheight = 0;
 var showSubmit = false;
 
 $(document).ready(function () {
     $('.own_post').hide();
     $(document).on("click", "#retrieve", function () {
         retrievePosts();
+    });
+
+    docheight = $(document).height() - 400;
+    $(window).on('resize', function () {
+        docheight = $(document).height() - 400;
     });
 
     $(document).on("click", '.flip-container.post .flipper, .own_post .flip-container .flipper', function () {
@@ -66,6 +71,7 @@ $(document).ready(function () {
 
     $(document).on('scroll', function () {
         if ($(window).scrollTop() + $(window).height() >= docheight) {
+            
             if(!debouncing){
                 if (!reachedEnd && hasSubmitted) {
                     retrievePosts();
