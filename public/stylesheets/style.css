@@ -476,40 +476,6 @@ canvas{
   color: white;
 }
 
-@media (orientation: landscape) {
-  main{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-items: center;
-    align-items: center;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  main {
-    background-color: grey;
-  }
-}
-
-@media only screen and (min-width: 1450px) {
-  .flip-container,
-  .front,
-  .back,
-  .nonflip {
-    width: 20vw;
-    height: 20vw;
-    position: relative;
-  }
-
-  .flipper {
-    transition: 0.8s;
-    width: 20vw;
-    height: 20vw;
-    transform-style: preserve-3d;
-    position: relative;
-  }
-}
-
 /* Form interactivity */
 
 .input-wrapper{
@@ -738,6 +704,12 @@ textarea {
 }
 
 @media (orientation: landscape) {
+    main {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-items: center;
+      align-items: center;
+    }
   .input-wrapper .portal {
     width: 50vmin;
     height: 50vmin;
@@ -802,5 +774,35 @@ textarea {
   .aligner,
   .bottom_container{
     display: none !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    background-color: grey;
+  }
+}
+
+@media only screen and (min-width: 1450px) {
+
+  .flip-container,
+  .front,
+  .back,
+  .nonflip {
+    width: 20vw;
+    height: 20vw;
+    /* position: relative; */
+  }
+
+  .flipper {
+    transition: 0.8s;
+    width: 20vw;
+    height: 20vw;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  section#output {
+    width: 100vmin;
   }
 }
