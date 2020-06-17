@@ -237,6 +237,8 @@ section#output{
 
 .flip-container.hover .back {
   z-index: 3;
+  /* backface-visibility: visible;  */
+  /* This is an oddity here. */
 }
 
 .flip-container,
@@ -387,6 +389,93 @@ section#intake form input[type="submit"] {
   padding: 1rem;
 }
 
+.fillscreen{
+  display: none;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.fillscreen .aligner{
+  display: flex;
+  position: relative;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin: auto;
+  justify-self: center;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.fillscreen .rendernote{
+  position: absolute;
+  max-width: 40vmin;
+}
+
+#capture .cam-icon{
+  background-image: url(../images/UI_svg/SVG/camera_blk.svg);
+}
+
+.rendernote mark{
+  margin: 0;
+  line-height: 2rem;
+  letter-spacing: 0.55vmin;
+  background-color: black;
+  color: white;
+  line-height: 4rem;
+}
+
+#first_note_render{
+    top: 2rem;
+    left: 4rem;
+}
+
+#second_note_render{
+  bottom: 7rem;
+  text-align: right;
+  right: 4rem;
+}
+
+.fillscreen .bottom_notes{
+  align-self: baseline;
+  padding-left: 4rem;
+}
+
+.fillscreen #capture{
+  margin-top: 1rem;
+}
+
+canvas{
+  position: fixed;
+  /* width: 100%;
+  height: 100%; */
+  z-index: 99999;
+  top:0;
+  left:0;
+}
+
+.bottom_container{
+  width: 100%;
+  border-top: 1px solid grey;
+  background-color: #000000;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: white;
+}
+
 @media (orientation: landscape) {
   main{
     display: flex;
@@ -441,7 +530,8 @@ section#intake form input[type="submit"] {
   align-items: center;
 }
 
-.input-wrapper .portal{
+.input-wrapper .portal,
+.fillscreen .displayportal{
   width: 80vmin;
   height: 80vmin;
   background-image: url('../images/H_close.jpg');
@@ -451,8 +541,23 @@ section#intake form input[type="submit"] {
   border-radius: 100%;
 }
 
-  .input-wrapper .portal#second-portal {
+.displayportal:nth-child(2){
+  margin-top: -12rem;
+}
+
+.fillscreen .displayportal{
+    width: 55vmin;
+    height: 55vmin;
+}
+
+  .input-wrapper .portal#second-portal,
+  .fillscreen .displayportal:nth-child(2) {
     background-image: url('../images/H_far.jpg');
+    
+  }
+
+  .fillscreen .displayportal:nth-child(2){
+    mix-blend-mode: multiply;
   }
 
 .input-wrapper .note {
@@ -628,6 +733,10 @@ textarea {
   }
 }
 
+#warning{
+  display: none;
+}
+
 @media (orientation: landscape) {
   .input-wrapper .portal {
     width: 50vmin;
@@ -644,6 +753,9 @@ textarea {
     height: 50vmin;
   }
 
+  section#output{
+    width: 85vw;
+  }
   .flip-container.formportal .back {
     width: 50vmin;
     height: 50vmin;
@@ -682,5 +794,13 @@ textarea {
     justify-items: center;
     margin-bottom: 4rem;
     column-gap: 2rem;
+  }
+
+  #warning{
+    display: block;
+  }
+  .aligner,
+  .bottom_container{
+    display: none !important;
   }
 }

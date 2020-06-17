@@ -8,6 +8,7 @@ var hasSubmitted = false;
 var docheight = 0;
 var showSubmit = false;
 
+
 $(document).ready(function () {
     $('.own_post').hide();
     $(document).on("click", "#retrieve", function () {
@@ -34,8 +35,6 @@ $(document).ready(function () {
         var targetid = '#' + senderid + '-formelement';
         toggleFormElement(targetid);
         if ($(this).attr('id').split('-')[0] === 'end'){
-            //resetForm(senderid, true);
-            //formStepOne(senderid);
         }
         if ($(this).attr('id').split('-')[0] === 'start') {
             formStepOne(senderid);
@@ -64,6 +63,28 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    $(document).on("click", '#getshareable', function () {
+        //TODO: create exportable render, also show "share" button
+        $('#renderer').css({'display':'flex'});
+    });
+
+    $(document).on("click", '#capture', function () {
+        $('#renderer').hide();
+        // console.log(window.innerWidth)
+        // console.log(window.innerHeight)
+        // html2canvas(document.querySelector("#renderer"), {
+        //     windowWidth: window.innerWidth,
+        //     windowHeight: window.innerHeight
+        // }).then(canvas => {
+        //     $('#renderer').append(canvas);
+        //     $('canvas').attr('height', window.innerHeight);
+        //     $('canvas').attr('width', window.innerWidth);
+        //     saveAs(canvas.toDataURL().replace("image/png", "image/octet-stream"), myrowkey + '-file-name.png');
+        // });
+    });
+
+
+
     $(document).on("click", '.ok', function () {
         var senderid = $(this).attr('id').split('-')[0];
         completeForm(senderid);
@@ -71,11 +92,10 @@ $(document).ready(function () {
 
     $(document).on('scroll', function () {
         if ($(window).scrollTop() + $(window).height() >= docheight) {
-            
             if(!debouncing){
                 if (!reachedEnd && hasSubmitted) {
                     retrievePosts();
-                    deactivateForm();
+                    //deactivateForm();
                 }
             }
         }
@@ -129,6 +149,25 @@ $(document).ready(function () {
     });
 });
 
+function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+    } else {
+        window.open(uri);
+    }
+}
+
 function deactivateForm(){
     $('form input, form a').hide();
     resetForm('first', true);
@@ -143,10 +182,18 @@ function toggleFormElement(target){
 
 function displayOwnPost(){
     $('.own_post').css({display: 'grid'});
-    var firstnote = $("#first-note").val();
-    var secondnote = $("#second-note").val();
-    $('#first_pic_output').siblings('.back').find('span').html(firstnote);
-    $('#second_pic_output').siblings('.back').find('span').html(secondnote);
+    var firstnote = $("#first-note").val().trim();
+    var secondnote = $("#second-note").val().trim();
+
+    if(firstnote){
+        $('#first_pic_output').siblings('.back').find('span').html(firstnote);
+        $('#first_note_render').find('mark').html(firstnote);
+    }
+    if(secondnote){
+        $('#second_pic_output').siblings('.back').find('span').html(secondnote);
+        $('#second_note_render').find('mark').html(secondnote);
+    }   
+    //TODO show grab my post button
 }
 
 function showEditButton(senderid, dir){
@@ -203,6 +250,7 @@ var loadFile = function (event) {
     var portalid = '#' + event.target.id.split('-')[0] + '-portal';
     var lowerportalid = '#' + event.target.id.split('-')[0] + '-lower-portal';
     var ownpostid = '#' + targetid + '_pic_output';
+    var renderid = '#' + targetid + '_pic_render';
     showEditButton(event.target.id.split('-')[0], true);
     var imgurl = URL.createObjectURL(event.target.files[0])
 
@@ -220,6 +268,9 @@ var loadFile = function (event) {
         'background-image': 'url(' + imgurl + ')'
     });
     $(ownpostid).css({
+        'background-image': 'url(' + imgurl + ')'
+    });
+    $(renderid).css({
         'background-image': 'url(' + imgurl + ')'
     });
     formStepTwo(targetid);

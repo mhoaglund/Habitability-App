@@ -157,8 +157,45 @@
         <h3>
           You can zoom in on the page.
         </h3>
+        <a id="getshareable">
+          <h3>
+                Display Shareable Post
+          </h3>
+        </a>
       </section>
     </section>
+    <aside id="renderer" class="fillscreen">
+      <div class="aligner">
+        <div id="second_pic_render" class="displayportal"></div>
+        <div id="first_pic_render" class="displayportal"></div>
+        <div id="second_note_render" class="rendernote"><mark></mark></div>
+        <div id="first_note_render" class="rendernote"><mark></mark></div>
+        <div class="bottom_notes">
+          <span>#COVID19Habitats<br>www.habitability.art/COVID19</span>
+        </div>
+        
+      </div>
+      <div id="warning">
+        Please take a screenshot in Portrait orientation.
+      </div>
+
+      <div class="bottom_container">
+        <div class="">
+          To save your post, take a screenshot on your device.
+        </div>
+        <a class="upload-btn" id="capture">
+          <div class="next-icon">
+          </div>
+          EXIT
+        </a>
+      </div>
+
+      <!-- <a class="upload-btn" id="capture">
+        <div class="cam-icon">
+        </div>
+        SAVE
+      </a> -->
+    </aside>
     <section id="output" class="feed">
       <div id="" class="post-body own_post">
         <p class="hidden"></p>
@@ -183,7 +220,7 @@
   </main>
 
 
-
-      <script src="javascripts/main.js"></script>
+  <script src="javascripts/html2canvas.min.js"></script>
+  <script src="javascripts/main.js"></script>
 </body>
 </html>
