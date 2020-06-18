@@ -21,8 +21,7 @@ const asHandler = require('.././azureServiceHandler.js');
 /* GET home page. */
 var payload = upload.fields([
   {name: 'pic1', maxCount: 1}, 
-  {name: 'pic2', maxCount: 1},
-  {name: 'pic3', maxCount: 1}
+  {name: 'pic2', maxCount: 1}
 ]);
 
 router.post('/', payload, function(req, res, next) {

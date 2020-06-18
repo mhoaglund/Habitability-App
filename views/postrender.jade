@@ -1,0 +1,17 @@
+extends render
+
+block content
+  .fillscreen.shown(id = "renderer")
+    .aligner.render
+      if post.pic1
+          .displayportal#first_pic_render(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic1})'})
+      if post.pic2
+          .displayportal#second_pic_render(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
+      if post.note1
+          div.rendernote#first_note_render
+            mark #{post.note1}
+      if post.note2
+          div.rendernote#second_note_render
+            mark #{post.note2}
+      .bottom_notes
+        span #COVID19Habitats<br>www.habitability.art/COVID19

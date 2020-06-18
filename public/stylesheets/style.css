@@ -1,5 +1,11 @@
 /* TODO orientation lock */
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Regular.ttf') format('ttf');
+}
+
+
 html,body{
   padding: 0;
   margin: 0;
@@ -422,6 +428,10 @@ section#intake form input[type="submit"] {
   max-width: 40vmin;
 }
 
+.fillscreen.shown{
+  display: block;
+}
+
 #capture .cam-icon{
   background-image: url(../images/UI_svg/SVG/camera_blk.svg);
 }
@@ -435,12 +445,12 @@ section#intake form input[type="submit"] {
   line-height: 4rem;
 }
 
-#first_note_render{
+#second_note_render {
     top: 2rem;
     left: 4rem;
 }
 
-#second_note_render{
+#first_note_render{
   bottom: 7rem;
   text-align: right;
   right: 4rem;
@@ -774,6 +784,9 @@ textarea {
   .aligner,
   .bottom_container{
     display: none !important;
+  }
+  .fillscreen .aligner.render{
+    display: flex !important;
   }
 }
 

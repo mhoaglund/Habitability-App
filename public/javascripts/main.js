@@ -193,7 +193,6 @@ function displayOwnPost(){
         $('#second_pic_output').siblings('.back').find('span').html(secondnote);
         $('#second_note_render').find('mark').html(secondnote);
     }   
-    //TODO show grab my post button
 }
 
 function showEditButton(senderid, dir){

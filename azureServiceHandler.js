@@ -5,6 +5,11 @@ var tableService = azure.createTableService();
 var entGen = azure.TableUtilities.entityGenerator;
 const config = require('config');
 
+var path = require('path');
+const minder = require(path.resolve(__dirname, "./fileminder.js"));
+
+// const minder = require('fileminder.js');
+
 const {
     v4: uuidv4
 } = require('uuid');
@@ -37,6 +42,7 @@ module.exports.structuredImport = function(_importPackage, _cb){
         if(item && item.fieldname){
             _row[item.fieldname] = entGen.String(item.filename);
             if (blobUpload(item)) {
+                minder.toRemove.push(item);
                 callback('Uploaded a file.');
             }
         } else{
@@ -75,6 +81,21 @@ module.exports.getEntities = function(_clienttoken = null, _cb){
     });
 }
 
+module.exports.getEntity = function (_rowKey, _cb) {
+    var query = new azure.TableQuery()
+        .top(1)
+        .where('RowKey eq ?', '_rowKey');
+        tableService.retrieveEntity(config.get('appconfig.tablecontainer'), "submission", _rowKey, function (error, result, response) {
+            if (!error) {
+                // result.entries contains entities matching the query
+                var cleaned = clean([result]);
+                _cb(cleaned[0]);
+            } else {
+                _cb("Nope");
+            }
+        })
+}
+
 function clean(coll){
     var simplified = [];
     coll.forEach(entity => {
@@ -98,10 +119,9 @@ function clean(coll){
     return simplified;
 }
 
-//TODO: private getSecret for auth
 function blobUpload(_inputfile) {
     if(!_inputfile) return;
-    blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path, function (error, result, response) {
+    blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path + _inputfile.filename, function (error, result, response) {
         if (!error) {
             // file uploaded
             console.log("Upload success")
@@ -112,7 +132,21 @@ function blobUpload(_inputfile) {
     });
 };
 
-//TODO investigate return value
+module.exports.blobUpload = blobUpload;
+
+module.exports.blobUploadAsync = function (_inputfile, _cb) {
+    if (!_inputfile) return;
+    blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path + _inputfile.filename, function (error, result, response) {
+        if (!error) {
+            // file uploaded
+            console.log("Upload success")
+            _cb(true, _inputfile.path + _inputfile.filename);
+        } else {
+            _cb(false, null);
+        }
+    });
+};
+
 function tableUpload(_inputrow, callback) {
     tableService.insertEntity(config.get('appconfig.tablecontainer'), _inputrow, function (error, result, response) {
         if (!error) {
