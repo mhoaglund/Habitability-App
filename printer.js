@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 var appDir = path.dirname(require.main.filename);
 
-const urlbase = "http://524b5b669e5d.ngrok.io/generate/lookup?RowKey="
+const urlbase = "http://hab-app-dev.azurewebsites.net/generate/lookup?RowKey="
 
 let instance = null;
 

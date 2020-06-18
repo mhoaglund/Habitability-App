@@ -8,7 +8,7 @@ var hasSubmitted = false;
 var docheight = 0;
 var showSubmit = false;
 
-
+// TODO: hook up a link to hit the post generation endpoint
 $(document).ready(function () {
     $('.own_post').hide();
     $(document).on("click", "#retrieve", function () {
