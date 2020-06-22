@@ -22,12 +22,16 @@ const getBrowserInstance = async function () {
 function chromeGenerateScreenshot(_input, cb) {
     (async () => {
         try {
+            var WSE = 'wss://chrome.browserless.io?token=' + process.env.BROWSERLESS_TOKEN;
+            const browser = await puppeteer.connect({
+                browserWSEndpoint: WSE
+            });
             console.log("Generating screenshot...");
             var droproot = appDir + '\\';
             var dropfile = _input + 'post.png';
             var droplocation = droproot + dropfile;
             //TODO check for existing file for this post.
-            const browser = await getBrowserInstance();
+            //const browser = await getBrowserInstance();
             const page = await browser.newPage();
             await page.goto(urlbase + _input, {
                 waitUntil: 'networkidle0',
@@ -40,6 +44,7 @@ function chromeGenerateScreenshot(_input, cb) {
             await page.screenshot({
                 path: droplocation
             });
+            browser.close();
             cb({
                 "path": droproot,
                 "filename": dropfile
