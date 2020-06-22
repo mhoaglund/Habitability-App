@@ -7,6 +7,7 @@ var shouldShowOwn = false;
 var hasSubmitted = false;
 var docheight = 0;
 var showSubmit = false;
+var mypostable = undefined;
 
 // TODO: hook up a link to hit the post generation endpoint
 $(document).ready(function () {
@@ -63,27 +64,22 @@ $(document).ready(function () {
         }, 1000);
     });
 
-    $(document).on("click", '#getshareable', function () {
-        //TODO: create exportable render, also show "share" button
-        $('#renderer').css({'display':'flex'});
+    $(document).on("click", '#burg', function () {
+        // if(!navigator){
+        //     alert("Nothing here!");
+        // }
+        // navigator.share({
+        //         title: 'Habitability.art',
+        //         text: 'What do we gain? What do we lose?',
+        //         url: 'https://hab-app-dev.azurewebsites.net',
+        //     })
+        //     .then(() => alert('Successful share'))
+        //     .catch((error) => console.log('Error sharing', error));
     });
 
     $(document).on("click", '#capture', function () {
         $('#renderer').hide();
-        // console.log(window.innerWidth)
-        // console.log(window.innerHeight)
-        // html2canvas(document.querySelector("#renderer"), {
-        //     windowWidth: window.innerWidth,
-        //     windowHeight: window.innerHeight
-        // }).then(canvas => {
-        //     $('#renderer').append(canvas);
-        //     $('canvas').attr('height', window.innerHeight);
-        //     $('canvas').attr('width', window.innerWidth);
-        //     saveAs(canvas.toDataURL().replace("image/png", "image/octet-stream"), myrowkey + '-file-name.png');
-        // });
     });
-
-
 
     $(document).on("click", '.ok', function () {
         var senderid = $(this).attr('id').split('-')[0];
@@ -95,7 +91,6 @@ $(document).ready(function () {
             if(!debouncing){
                 if (!reachedEnd && hasSubmitted) {
                     retrievePosts();
-                    //deactivateForm();
                 }
             }
         }
@@ -128,7 +123,29 @@ $(document).ready(function () {
                         myrowkey = reply.myrowkey;
                         hasSubmitted = true;
                         $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
-                        
+                        //TODO: hit the post generator endpoint
+                        console.log("/generate?RowKey=" + myrowkey);
+                        $('#shareable').show();
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "GET",
+                                url: "/generate?RowKey=" + myrowkey,
+                                timeout: 60000,
+                                success: function (reply) {
+                                    console.log(reply);
+                                    mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
+                                    var mypostimg = "<img src='" + "https://habdata.blob.core.windows.net/habdatablob/" + reply.file + "'/>"
+                                    $('#shareable').append(mypostimg);
+                                    $('#awaitshareable').hide();
+                                    $('#shareable .floatingshare').show();
+                                    $('#share').attr('href', mypostable);
+                                },
+                                error: function (e) {
+                                    console.log(e);
+                                    //TODO show post error state
+                                }
+                            })
+                        }, 10000);
                     }
                     retrievePosts();
                 }

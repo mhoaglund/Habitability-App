@@ -24,10 +24,11 @@ function chromeGenerateScreenshot(_input, cb) {
             var droproot = appDir + '\\';
             var dropfile = _input + 'post.png';
             var droplocation = droproot + dropfile;
+            //TODO check for existing file for this post.
             const browser = await getBrowserInstance();
             const page = await browser.newPage();
             await page.goto(urlbase + _input, {
-                waitUntil: 'networkidle2',
+                waitUntil: 'networkidle0',
                 timeout: 0
             });
             await page.setViewport({

@@ -30,11 +30,17 @@ router.get('/', function(req,res,next){
         printer.chromeGenerateScreenshot(req.query.RowKey, function(fileprops, err){
             if(!err){
                 asHandler.blobUploadAsync(fileprops, function (result, filename) {
+                    this._fileprops = fileprops;
                     if (filename){
-                        res.sendFile(filename);
+                        //res.sendFile(filename);
+                        res.send({
+                            oall: "Success",
+                            file: this._fileprops.filename
+                        })
                     } else {
                         res.send({
-                            oall: "Failure"
+                            oall: "Failure",
+                            file: undefined
                         })
                     }
                 })

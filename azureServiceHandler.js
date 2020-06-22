@@ -6,9 +6,6 @@ var entGen = azure.TableUtilities.entityGenerator;
 const config = require('config');
 
 var path = require('path');
-const minder = require(path.resolve(__dirname, "./fileminder.js"));
-
-// const minder = require('fileminder.js');
 
 const {
     v4: uuidv4
@@ -18,7 +15,6 @@ const maxDate = new Date(8640000000000000);
 
 //TODO: implement log tail pattern with reverse-tick row keys
 module.exports.structuredImport = function(_importPackage, _cb){
-    //TODO: call everything in order and alert the file minder
     var invertedTicks = String(8640000000000000 - Date.now()).padStart(20, '0');
     var date = new Date();
     var now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
@@ -42,7 +38,7 @@ module.exports.structuredImport = function(_importPackage, _cb){
         if(item && item.fieldname){
             _row[item.fieldname] = entGen.String(item.filename);
             if (blobUpload(item)) {
-                minder.toRemove.push(item);
+                //minder.toRemove.push(item);
                 callback('Uploaded a file.');
             }
         } else{
@@ -121,10 +117,10 @@ function clean(coll){
 
 function blobUpload(_inputfile) {
     if(!_inputfile) return;
-    blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path + _inputfile.filename, function (error, result, response) {
+    blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path, function (error, result, response) {
         if (!error) {
             // file uploaded
-            console.log("Upload success")
+            console.log("blob upload: Upload success")
             return true;
         } else {
             return false;
@@ -139,7 +135,7 @@ module.exports.blobUploadAsync = function (_inputfile, _cb) {
     blobService.createBlockBlobFromLocalFile(config.get('appconfig.blobcontainer'), _inputfile.filename, _inputfile.path + _inputfile.filename, function (error, result, response) {
         if (!error) {
             // file uploaded
-            console.log("Upload success")
+            console.log("blob upload async: Upload success")
             _cb(true, _inputfile.path + _inputfile.filename);
         } else {
             _cb(false, null);

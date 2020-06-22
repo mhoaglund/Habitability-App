@@ -9,7 +9,11 @@
     <aside id="spinner">
       <div class="spinnerimage"></div>
     </aside>
-    <aside class="skipform">
+    <aside class="topright">
+      <a id="burg">
+        <div class="icon">
+        </div>
+      </a>
       <a id="skip">
         <div class="icon">
           <p>+</p>
@@ -81,7 +85,7 @@
 
           <input type="file" name="pic1" accept="image/*" capture="" id="first-pic" onchange="loadFile(event)">
           <div class="note" id="firstnotewrapper">
-            <input type="text" id="first-note" name="note1">
+            <input type="text" id="first-note" name="note1" maxlength="120">
           </div>
           <a class="upload-btn ok" id="first-ok">
               <div class="next-icon">
@@ -119,7 +123,7 @@
           </a>
           <input type="file" name="pic2" accept="image/*" capture="" id="second-pic" onchange="loadFile(event)">
           <div class="note" id="secondnotewrapper">
-            <input type="text" id="second-note" name="note2">
+            <input type="text" id="second-note" name="note2" maxlength="120">
           </div>
           <a class="upload-btn ok" id="second-ok">
             <div class="next-icon">
@@ -143,16 +147,22 @@
         </div>
         <h3>
           Thank you for participating!
-          Slide down to see other's submissions.
+          You can share or save your submission below.
         </h3>
-        <h3>
-          You can zoom in on the page.
-        </h3>
-        <a id="getshareable">
+        <section id="shareable">
+          <div id="awaitshareable">
+            
+          </div>
+          <a id="share" class="floatingshare" target="_blank" rel="noopener noreferrer"></a>
+        </section>
+        <div>
+          <div class="pinch-icon">
+          </div>
           <h3>
-                Display Shareable Post
+            You can zoom in the page. Keep scrolling to see posts from others.
           </h3>
-        </a>
+        </div>
+
       </section>
     </section>
     <aside id="renderer" class="fillscreen">
@@ -188,6 +198,9 @@
       </a> -->
     </aside>
     <section id="output" class="feed">
+      <div id="scale-bar" class="scale">
+
+      </div>
       <div id="" class="post-body own_post">
         <p class="hidden"></p>
         <div class="flip-container">

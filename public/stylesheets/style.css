@@ -339,13 +339,21 @@ section#output{
   z-index: 999;
 }
 
-.spinnerimage{
+.spinnerimage,
+#awaitshareable {
   background-image: url('../images/24.gif');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
   height: 4rem;
   width: 4rem;
+}
+
+#awaitshareable{
+  background-color: black;
+  border-radius: 8rem;
+  background-size: 56%;
+  margin: auto;
 }
 
 .upload-btn label{
@@ -463,6 +471,14 @@ section#intake form input[type="submit"] {
 
 .fillscreen #capture{
   margin-top: 1rem;
+}
+
+#scale-bar{
+  background-image:url('../images/UI_svg/scale.png');
+  background-size: 120% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 20vmin;
 }
 
 canvas{
@@ -599,6 +615,15 @@ textarea {
   margin: auto;
 }
 
+.pinch-icon {
+  height: 8rem;
+  width: 8rem;
+  background-image: url(../images/UI_svg/zoom_finger.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: auto;
+}
+
 .next,
 .ok{
   display: none;
@@ -618,22 +643,50 @@ textarea {
   align-items: center;
   align-content: center;
   text-align: center;
-  padding-left: 5vmin;
-  padding-right: 5vmin;
 }
 
-.skipform{
+.thankyou h3{
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.topright{
     color: white;
     position: fixed;
     top: 2rem;
     right: 2.7rem;
 }
 
+.topright a{
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.topright #burg .icon{
+    height: 4rem;
+    width: 4rem;
+    background-image: url(../images/UI_svg/burger.png);
+    background-repeat: no-repeat;
+    background-size: 35%;
+    background-position: center;
+    margin: auto;
+    transform: rotate(90deg);
+}
+
 #skip{
   display: block;
 }
 
-#skip .icon{
+#shareable{
+  display: none;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+#skip .icon,
+#burg .icon,
+#shareable .floatingshare{
     height: 4rem;
     width: 4rem;
     display: flex;
@@ -642,6 +695,21 @@ textarea {
     justify-content: center;
     border: 1px solid white;
     border-radius: 8rem;
+}
+
+#shareable .floatingshare{
+  display: none;
+  background-color: black;
+  border-color: black;
+  background-image: url(../images/UI_svg/share.png);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center 36%;
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2rem;
+  height: 6rem;
+  width: 6rem;
 }
 
 #skip .icon p{
