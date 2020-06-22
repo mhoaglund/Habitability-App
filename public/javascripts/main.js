@@ -125,6 +125,7 @@ $(document).ready(function () {
                         $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
                         //TODO: hit the post generator endpoint
                         console.log("/generate?RowKey=" + myrowkey);
+                        $('#scale-bar').show();
                         $('#shareable').show();
                         setTimeout(function () {
                             $.ajax({

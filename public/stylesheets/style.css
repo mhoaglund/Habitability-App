@@ -492,6 +492,7 @@ section#intake form input[type="submit"] {
   background-position: center;
   background-repeat: no-repeat;
   height: 20vmin;
+  display: none;
 }
 
 canvas{

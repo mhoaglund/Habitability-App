@@ -22,7 +22,7 @@ const getBrowserInstance = async function () {
 function chromeGenerateScreenshot(_input, cb) {
     (async () => {
         try {
-            var WSE = 'wss://chrome.browserless.io?token=' + process.env.BROWSERLESS_TOKEN;
+            var WSE = 'http://' + process.env.BROWSERLESS_HOST + '?token=' + process.env.BROWSERLESS_TOKEN;
             const browser = await puppeteer.connect({
                 browserWSEndpoint: WSE
             });
