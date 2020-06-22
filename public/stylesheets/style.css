@@ -222,6 +222,19 @@ section#whoarewe {
   background-size: 100vmin;
 }
 
+section#thestreets {
+  background-image: url('../images/L/H_main05_0_L.jpg');
+}
+
+section#thestreets .text-frame{
+  align-items: center;
+  grid-template-rows: 15rem 1fr;
+}
+
+section#thestreets .text-frame h3{
+  grid-row:2;
+}
+
 section#output{
   width: 100vmin;
   background-color: black;
