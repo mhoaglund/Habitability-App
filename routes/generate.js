@@ -27,6 +27,7 @@ router.get('/lookup', function (req, res, next) {
 //root get generates and returns a post image.
 router.get('/', function(req,res,next){
     if (req.query.RowKey) {
+        console.log("Generating post for " + req.query.RowKey);
         printer.chromeGenerateScreenshot(req.query.RowKey, function(fileprops, err){
             if(!err){
                 asHandler.blobUploadAsync(fileprops, function (result, filename) {
@@ -44,6 +45,8 @@ router.get('/', function(req,res,next){
                         })
                     }
                 })
+            } else {
+                console.log(err);
             }
         })
     } else {

@@ -13,6 +13,7 @@ function toparams(_input) {
 }
 
 const getBrowserInstance = async function () {
+    console.log("Checking browser instance...");
     if (!instance)
         instance = await puppeteer.launch();
     return instance;
@@ -21,6 +22,7 @@ const getBrowserInstance = async function () {
 function chromeGenerateScreenshot(_input, cb) {
     (async () => {
         try {
+            console.log("Generating screenshot...");
             var droproot = appDir + '\\';
             var dropfile = _input + 'post.png';
             var droplocation = droproot + dropfile;
