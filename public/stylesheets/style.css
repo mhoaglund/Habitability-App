@@ -220,6 +220,7 @@ section#whoarewe {
   background-image: url('../images/L/H_main05.jpg');
   background-position: center bottom;
   background-size: 100vmin;
+  height: 125vmax;
 }
 
 section#thestreets {
@@ -875,6 +876,29 @@ textarea {
 @media only screen and (min-width: 1200px) {
   main {
     background-color: grey;
+  }
+  section#planet {
+    background-image: url('../images/XL/H_main01.jpg');
+  }
+
+  section#athome {
+    background-image: url('../images/XL/H_main02.jpg');
+  }
+
+  section#athospitals {
+    background-image: url('../images/XL/H_main03.jpg');
+  }
+
+  section#us {
+    background-image: url('../images/XL/H_main04.jpg');
+  }
+
+  section#whoarewe {
+    background-image: url('../images/XL/H_main05.jpg');
+  }
+
+  section#thestreets {
+    background-image: url('../images/XL/H_main05_0_L.jpg');
   }
 }
 
