@@ -35,7 +35,8 @@ $(document).ready(function () {
         var senderid = $(this).attr('id').split('-')[1];
         var targetid = '#' + senderid + '-formelement';
         toggleFormElement(targetid);
-        if ($(this).attr('id').split('-')[0] === 'end'){
+        if ($(this).attr('id').split('-')[1] === 'about'){
+            $('#about').hide();
         }
         if ($(this).attr('id').split('-')[0] === 'start') {
             formStepOne(senderid);
@@ -64,21 +65,14 @@ $(document).ready(function () {
         }, 1000);
     });
 
-    $(document).on("click", '#burg', function () {
-        // if(!navigator){
-        //     alert("Nothing here!");
-        // }
-        // navigator.share({
-        //         title: 'Habitability.art',
-        //         text: 'What do we gain? What do we lose?',
-        //         url: 'https://hab-app-dev.azurewebsites.net',
-        //     })
-        //     .then(() => alert('Successful share'))
-        //     .catch((error) => console.log('Error sharing', error));
+    $(document).on("click", '#contact-link', function () {
+        $('#about').animate({
+            scrollTop: ($("#scrollpoint").position().top)
+        }, 800);
     });
 
-    $(document).on("click", '#capture', function () {
-        $('#renderer').hide();
+    $(document).on("click", '#burg', function () {
+        $('#about').css({'display':'block'});
     });
 
     $(document).on("click", '.ok', function () {
@@ -95,6 +89,29 @@ $(document).ready(function () {
             }
         }
     })
+
+
+    $('#contactform').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: "POST",
+            url: "/contact",
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data){
+                toggleFormElement('#sentalert');
+                setTimeout(function () {
+                    $('#about').hide();
+                    $('#sentalert').removeClass('fade-in');
+                }, 2000);
+
+            },
+            error: function (e) {
+                $('#about').hide();
+                console.log(e);
+            }
+        })
+    });
 
     $('#intakeform').submit(function (e) {
         e.preventDefault();
@@ -127,6 +144,7 @@ $(document).ready(function () {
                         console.log("/generate?RowKey=" + myrowkey);
                         $('#scale-bar').show();
                         $('#shareable').show();
+                        $('#skip').hide();
                         setTimeout(function () {
                             $.ajax({
                                 type: "GET",
@@ -168,7 +186,7 @@ $(document).ready(function () {
 });
 
 function deactivateForm(){
-    $('form input, form a').hide();
+    $('#intakeform input, #intakeform a').hide();
     resetForm('first', true);
     resetForm('second', true);
     toggleFormElement('.thankyou');

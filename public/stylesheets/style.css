@@ -29,6 +29,13 @@ h3{
   font-weight: 300;
 }
 
+textarea{
+  background-color: black;
+  color: white;
+  width:98%;
+  height: 28vmin;
+}
+
 .hidden{
   display: none;
 }
@@ -433,14 +440,10 @@ section#intake form input[type="submit"] {
 
 .fillscreen .aligner{
   display: flex;
-  position: relative;
   flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
+
   margin: auto;
-  justify-self: center;
-  width: 100%;
+
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -454,8 +457,32 @@ section#intake form input[type="submit"] {
   display: block;
 }
 
-#capture .cam-icon{
-  background-image: url(../images/UI_svg/SVG/camera_blk.svg);
+#sentalert{
+  z-index: 100000;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+#sentalert .round-frame{
+  border: 1px solid white;
+  background-color: black;
+  width: 40vmin;
+  height: 40vmin;
+  padding: 5rem;
+  border-radius: 50vmin;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .rendernote mark{
@@ -481,10 +508,6 @@ section#intake form input[type="submit"] {
 .fillscreen .bottom_notes{
   align-self: baseline;
   padding-left: 4rem;
-}
-
-.fillscreen #capture{
-  margin-top: 1rem;
 }
 
 #scale-bar{
@@ -650,6 +673,10 @@ textarea {
   right: 2rem;
 }
 
+#about .exitform{
+  position: fixed;
+}
+
 .thankyou{
   display: none;
   flex-flow: column nowrap;
@@ -792,8 +819,71 @@ textarea {
   }
 }
 
-#warning{
+#warning,
+#about{
   display: none;
+}
+
+#about{
+
+  box-sizing: border-box;
+  height: 100vh;
+  flex-flow: column nowrap;
+  background-color: black;
+  overflow-y: scroll;
+  color: white;
+  padding: 4rem;
+}
+
+#about .aligner{
+  width: auto;
+  margin-right: auto;
+  margin-left:auto;
+}
+
+#about p, #about p a{
+  font-size: 1rem;
+  line-height: 1.8;
+
+  letter-spacing: 0.35vmin;
+}
+
+#about h3{
+  font-weight: 500;
+}
+
+#about form{
+
+}
+
+#about form input{
+  display:block;
+  margin-left:auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width:98%;
+}
+
+#about input[type='submit'] {
+  display: block;
+  font-size: 2rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: auto;
+  margin-top:8rem;
+  margin-bottom:8rem;
+}
+
+#about hr{
+  margin: 3rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#about .menulink{
+  margin-top: 3rem;
+  font-weight: 500;
 }
 
 @media (orientation: landscape) {
@@ -864,7 +954,6 @@ textarea {
   #warning{
     display: block;
   }
-  .aligner,
   .bottom_container{
     display: none !important;
   }
@@ -899,6 +988,12 @@ textarea {
 
   section#thestreets {
     background-image: url('../images/XL/H_main05_0_L.jpg');
+  }
+
+  input[type='text'],
+  input[type='number'],
+  textarea {
+    font-size: 2rem;
   }
 }
 

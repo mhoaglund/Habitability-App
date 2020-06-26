@@ -6,8 +6,105 @@
 </head>
 <body>
   <main>
+          <aside id="sentalert">
+            <div class="round-frame">
+              <h3>Message Sent.</h3>
+              <h3>Thank You!</h3>
+            </div>
+
+          </aside>
     <aside id="spinner">
       <div class="spinnerimage"></div>
+    </aside>
+    <aside id="about" class="fillscreen">
+
+      <div class="aligner">
+
+      <aside class="exitform">
+        <a class="exit-btn" id="end-about">
+          <div class="exit-icon">
+          </div>
+          Exit
+        </a>
+      </aside>
+      <br/>
+      <a class="menulink" id="about-link">About Habitability.art</a>
+      <a class="menulink" id="contact-link">Contact Us</a>
+      <br />
+      <br />
+      <hr />
+      <h3>About Habitability.art</h3>
+      <p>What if artists were in charge of how we learn—of how we ask questions and do research; how we teach and gather to share
+      knowledge? Imagine a symposium run by artists. What could this symposium be? More important: what could it do? Who would
+      need to be there, and why?
+      </p>
+      <p>
+      We are inspired by an art project from 50 years ago: the “First National Symposium on Habitability of Environments” by
+      the Californian artist Robert Irwin. Habitability is the field of knowledge that asks: What does it take to have a
+      habitable environment for humans, on Earth and in outer space? Scientist Ed Wortz worked on habitability in NASA's
+      Apollo Program. Artist Robert Irwin was Wortz’s close friend and a collaborator who grew increasingly frustrated with
+      NASA’s approach to habitability as a technical challenge: e.g., provide this much air, water and food, the human lives,
+      and that’s enough. Irwin also felt that just pointing out the problem was insufficient: rather, he argued, the very way
+      we learn and discuss habitability needs to be reconsidered. And so, when Wortz asked him to help organize a symposium on
+      habitability, Irwin hosted the gathering in his own studio, transforming the space into an unstable, dynamic environment
+      that challenged everyone involved to think, feel, and talk habitability.
+      </p>
+      <p>
+      Half a century later, our team took Irwin’s symposium as inspiration and asked: If we, a group of artists and designers,
+      were to create a “Symposium on Habitability” today, what would it look and feel like? We’ve been thinking and
+      experimenting with that idea for the past two years...
+      </p>
+      <p>
+      and then — the COVID-19 pandemic came and changed the ways all of us inhabit everything.
+      For many of us, this time of “social isolation” is challenging. We see this website as a collectively created social
+      network for the pandemic. We hope that by sharing pictures and poetic reflections, what we see and how we feel, we will
+      all learn about things we care about in places we live: things to be gained in this new world and things we stand to
+      lose. Ultimately, we just want to hold a shared space. Thank you for convening here with us.
+      </p>
+      <p>
+      We are: <a href="https://www.oicherman.art/">Boris Oicherman</a>, the <a
+        href="http://www.interestingtactics.com/">Interesting Tactics collective</a> (Mary Dahlman
+      Begley,
+      Isaac Hase, Drew Smith, Austin
+      Watanabe), <a href="https://www.mnartists.org/peng-wu">Peng Wu</a>, <a
+        href="https://cream.ac.uk/people/neal-white/">Neal White</a>, and <a
+          href="https://mhoaglund.com">Max Hoaglund</a>. We are grateful
+      for your sharing your space with us, and promise to be
+      as humanly sensitive and responsible as we can with what you share. We might use the images and texts you submit in
+      future exhibitions and publications. If you don’t want that, please get in touch.
+      </p>
+      <p id="scrollpoint">
+      Thank you.
+    </p>
+    <br>
+      <form method="POST" action="/contact" id="contactform">
+        <textarea name="message"></textarea>
+        <input type="text" name="visitorname" placeholder="name"/>
+        <input type="text" name="visitoremail" placeholder="email" type="email"/>
+        <input type="submit" value="Submit" id="submitcontact"/>
+      </form>
+      <br>
+      <p>
+        This is a project by the Weisman Art Museum. For more about the project check out the <a
+          href="https://wam.umn.edu/">WAM Website</a>, <a
+            href="https://wam.umn.edu/2018/10/01/habitability-of-environments-interview-with-robert-irwin/">read this
+            interview
+            with Robert Irwin</a>, or write to us.
+        Designed and hand-drawn by Peng. Programmed by Max. Curated by Boris.
+      </p>
+      <hr/>
+      <p>
+        Supported by:
+        <br/>
+        Weisman Art Museum (University of Minnesota - Twin Cities), where Boris curates the Target Studio for Creative
+        Collaboration
+        <br />
+        University of Westminster, London, where Neal works as the Director of CREAM
+        <br />
+        The Andy Warhol Foundation for the Visual Arts, that gave Boris the Curatorial Research grant That funded the first two
+        years of this project.
+      </p>
+      </div>
     </aside>
     <aside class="topright">
       <a id="burg">
@@ -166,38 +263,6 @@
 
       </section>
     </section>
-    <aside id="renderer" class="fillscreen">
-      <div class="aligner">
-        <div id="second_pic_render" class="displayportal"></div>
-        <div id="first_pic_render" class="displayportal"></div>
-        <div id="second_note_render" class="rendernote"><mark></mark></div>
-        <div id="first_note_render" class="rendernote"><mark></mark></div>
-        <div class="bottom_notes">
-          <span>#COVID19Habitats<br>www.habitability.art/COVID19</span>
-        </div>
-        
-      </div>
-      <div id="warning">
-        Please take a screenshot in Portrait orientation.
-      </div>
-
-      <div class="bottom_container">
-        <div class="">
-          To save your post, take a screenshot on your device.
-        </div>
-        <a class="upload-btn" id="capture">
-          <div class="next-icon">
-          </div>
-          EXIT
-        </a>
-      </div>
-
-      <!-- <a class="upload-btn" id="capture">
-        <div class="cam-icon">
-        </div>
-        SAVE
-      </a> -->
-    </aside>
     <section id="output" class="feed">
       <div id="scale-bar" class="scale">
 
