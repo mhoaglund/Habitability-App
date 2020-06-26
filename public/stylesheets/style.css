@@ -438,6 +438,18 @@ section#intake form input[type="submit"] {
   width: 100%;
 }
 
+#renderer.fillscreen .aligner{
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+}
+
 .fillscreen .aligner{
   display: flex;
   flex-flow: column;
@@ -994,6 +1006,7 @@ textarea {
   input[type='number'],
   textarea {
     font-size: 2rem;
+    font-family: "Open Sans";
   }
 }
 

@@ -149,7 +149,7 @@ $(document).ready(function () {
                             $.ajax({
                                 type: "GET",
                                 url: "/generate?RowKey=" + myrowkey,
-                                timeout: 60000,
+                                timeout: 90000,
                                 success: function (reply) {
                                     console.log(reply);
                                     mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
