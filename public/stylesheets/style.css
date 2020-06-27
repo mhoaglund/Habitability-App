@@ -991,7 +991,7 @@ textarea {
 }
 
 .fillscreen .aligner.render .displayportal{
-  background-size: 115%;
+  background-size: 125%;
 }
 
 @media only screen and (min-width: 1200px) {
