@@ -156,6 +156,7 @@ $(document).ready(function () {
                                     var mypostimg = "<img src='" + "https://habdata.blob.core.windows.net/habdatablob/" + reply.file + "'/>"
                                     $('#shareable').append(mypostimg);
                                     $('#awaitshareable').hide();
+                                    $('#shareable h3').hide();
                                     $('#shareable .floatingshare').show();
                                     $('#share').attr('href', mypostable);
                                 },
@@ -164,7 +165,7 @@ $(document).ready(function () {
                                     //TODO show post error state
                                 }
                             })
-                        }, 10000);
+                        }, 5000);
                     }
                     retrievePosts();
                 }

@@ -750,6 +750,10 @@ textarea {
   position: relative;
 }
 
+#shareable h3{
+  opacity: 0.6;
+}
+
 #skip .icon,
 #burg .icon,
 #shareable .floatingshare{
@@ -980,6 +984,9 @@ textarea {
   }
   .fillscreen .aligner.render{
     display: flex !important;
+  }
+  #about .aligner {
+    width: 68vmax;
   }
 }
 
