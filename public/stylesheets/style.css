@@ -837,7 +837,6 @@ textarea {
 }
 
 #about{
-
   box-sizing: border-box;
   height: 100vh;
   flex-flow: column nowrap;
@@ -854,9 +853,7 @@ textarea {
 }
 
 #about p, #about p a{
-  font-size: 1rem;
   line-height: 1.8;
-
   letter-spacing: 0.35vmin;
 }
 

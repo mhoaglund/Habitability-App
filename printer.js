@@ -27,7 +27,7 @@ function chromeGenerateScreenshot(_input, cb) {
                 browserWSEndpoint: WSE
             });
             console.log("Generating screenshot...");
-            var droproot = appDir + '\\';
+            var droproot = appDir + '/';
             var dropfile = _input + 'post.png';
             var droplocation = droproot + dropfile;
             //TODO check for existing file for this post.
