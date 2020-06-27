@@ -16,11 +16,23 @@ body {
   font: 2rem "Open Sans", Helvetica, Arial, sans-serif;
 }
 
+textarea,
+input,
+button,
+select {
+  font-family: inherit !important;
+  font-size: inherit;
+}
+
 a {
   color: white;
   font-size: 3rem;
   letter-spacing: 0.55rem;
   cursor: pointer;
+}
+
+#about a{
+  font-size: 2rem;
 }
 
 h3{
@@ -393,7 +405,7 @@ input[type="text"]{
   font-size: 2rem;
   color: white;
   -webkit-appearance: none;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
 }
 
 section#intake form input[type="submit"] {
@@ -969,6 +981,10 @@ textarea {
   .fillscreen .aligner.render{
     display: flex !important;
   }
+}
+
+.fillscreen .aligner.render .displayportal{
+  background-size: 115%;
 }
 
 @media only screen and (min-width: 1200px) {
