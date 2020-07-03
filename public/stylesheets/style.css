@@ -135,6 +135,10 @@ section#planet .text-frame {
   align-items: end;
 }
 
+section#planet .text-frame h3{
+  grid-row: 2;
+}
+
 section#see{
     background-image: url('../images/flip/H_main06_l.gif');
     background-color: black;
@@ -518,12 +522,12 @@ section#intake form input[type="submit"] {
   line-height: 4rem;
 }
 
-#second_note_render {
+#first_note_render {
     top: 2rem;
     left: 4rem;
 }
 
-#first_note_render{
+#second_note_render{
   bottom: 7rem;
   text-align: right;
   right: 4rem;
