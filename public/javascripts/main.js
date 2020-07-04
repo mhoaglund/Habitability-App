@@ -83,7 +83,7 @@ $(document).ready(function () {
     $(document).on('scroll', function () {
         if ($(window).scrollTop() + $(window).height() >= docheight) {
             if(!debouncing){
-                if (!reachedEnd && hasSubmitted) {
+                if (!reachedEnd) {
                     retrievePosts();
                 }
             }
@@ -94,6 +94,7 @@ $(document).ready(function () {
     $('#contactform').submit(function (e) {
         e.preventDefault();
         var form = $(this);
+        $('#submitcontact').prop("disabled", true);
         $.ajax({
             type: "POST",
             url: "/contact",
@@ -103,6 +104,7 @@ $(document).ready(function () {
                 setTimeout(function () {
                     $('#about').hide();
                     $('#sentalert').removeClass('fade-in');
+                    $('#submitcontact').prop("disabled", false);
                 }, 2000);
 
             },
@@ -140,11 +142,14 @@ $(document).ready(function () {
                         myrowkey = reply.myrowkey;
                         hasSubmitted = true;
                         $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
-                        //TODO: hit the post generator endpoint
-                        console.log("/generate?RowKey=" + myrowkey);
-                        $('#scale-bar').show();
+
                         $('#shareable').show();
                         $('#skip').hide();
+
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $("#intake").offset().top
+                        }, 1000);
+
                         setTimeout(function () {
                             $.ajax({
                                 type: "GET",
@@ -350,6 +355,7 @@ function formStepThree(target) {
 }
 
 function retrievePosts(){
+    $('#scale-bar').show();
     $("#spinner").css({'display': 'flex'});
     // $('.own_post').hide();
     debouncing = true;
