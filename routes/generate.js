@@ -33,7 +33,6 @@ router.get('/', function(req,res,next){
                 asHandler.blobUploadAsync(fileprops, function (result, filename) {
                     this._fileprops = fileprops;
                     if (filename){
-                        //res.sendFile(filename);
                         res.send({
                             oall: "Success",
                             file: this._fileprops.filename

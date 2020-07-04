@@ -3,6 +3,7 @@
 //This will be configurable for delete-on-arrival or scheduled batch delete ops.
 const fs = require('fs');
 const path = require('path');
+var appDir = path.dirname(require.main.filename);
 var CronJob = require('cron').CronJob;
 var job = new CronJob('0 0 0 * * *', function () {
     this.clean(true);
@@ -19,6 +20,18 @@ function clean(all = false){
                 fs.unlink(path.join(directory, file), err => {
                     if (err) throw err;
                 });
+            }
+        });
+        fs.readdir(appDir, (err, files) => {
+            if (err) throw err;
+            for (const file of files) {
+                if(path.extname(file) === '.png'){
+                    console.log("Deleting a generated post...")
+                    fs.unlink(path.join(appDir, file), err => {
+                        if (err) throw err;
+                    });
+                }
+
             }
         });
     } else {
@@ -40,6 +53,8 @@ function clean(all = false){
         });
     }
 }
+
+//TODO: add routine to wipe generated images out of the bin directory
 
 toRemove = [];
 module.exports.toRemove = this.toRemove
