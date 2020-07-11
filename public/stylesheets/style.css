@@ -122,17 +122,21 @@ section#us .text-frame {
   width: 100%;
   height: 100%;
   grid-template-columns: 2rem 1fr 2rem;
-  grid-template-rows: 1fr 1fr 0.7fr 2rem;
+  grid-template-rows: 0.8fr 0.8fr 0.7fr 2rem;
 }
 
 section#us .text-frame h3:first-child{
   align-self: flex-start;
 }
 
-section#us .text-frame,
+
 section#athome .text-frame,
 section#planet .text-frame {
   align-items: end;
+}
+
+section#us .text-frame{
+  align-items: start;
 }
 
 section#planet .text-frame h3{
@@ -151,7 +155,6 @@ section#see{
 }
 
 section#intake{
-    
     background-color: black;
     color: white;
     background-position: top center;
@@ -161,6 +164,7 @@ section#intake{
     flex-flow: column nowrap;
     align-items: center;
     padding-bottom: 4rem;
+    width: 100vmin;
 }
 section#intake form{
       display: grid;
@@ -739,6 +743,7 @@ textarea {
     position: fixed;
     top: 2rem;
     right: 2.7rem;
+    z-index: 1;
 }
 
 .topright a{
@@ -951,7 +956,11 @@ textarea {
     height: 50vmin;
   }
 
-  section#output{
+  section#output,
+  section#intake,
+  section.frame,
+  section.double-frame,
+  section#see{
     width: 85vw;
   }
   .flip-container.formportal .back {
@@ -1067,7 +1076,11 @@ textarea {
     position: relative;
   }
 
-  section#output {
-    width: 100vmin;
-  }
+    section#output,
+    section#intake,
+    section.frame,
+    section.double-frame,
+    section#see {
+      width: 100vmin;
+    }
 }

@@ -9,7 +9,6 @@ var docheight = 0;
 var showSubmit = false;
 var mypostable = undefined;
 
-// TODO: hook up a link to hit the post generation endpoint
 $(document).ready(function () {
     $('.own_post').hide();
     $(document).on("click", "#retrieve", function () {
@@ -98,7 +97,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "/contact",
-            data: form.serialize(), // serializes the form's elements.
+            data: form.serialize(),
             success: function(data){
                 toggleFormElement('#sentalert');
                 setTimeout(function () {
