@@ -156,7 +156,8 @@ $(document).ready(function () {
                                 timeout: 90000,
                                 success: function (reply) {
                                     console.log(reply);
-                                    mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
+                                    //mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
+                                    mypostable = '/generate/show?postimg=' + reply.file;
                                     var mypostimg = "<img src='" + "https://habdata.blob.core.windows.net/habdatablob/" + reply.file + "'/>"
                                     $('#shareable').append(mypostimg);
                                     $('#awaitshareable').hide();

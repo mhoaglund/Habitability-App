@@ -53,4 +53,16 @@ router.get('/', function(req,res,next){
     }
 })
 
+router.get('/show', function(req,res,next){
+    if(req.query.postimg){
+        res.render('postshow', {
+            postimg: req.query.postimg
+        });
+    } else {
+        res.render('postshow', {
+            postimg: '00008638405451727725post.png'
+        });
+    }
+})
+
 module.exports = router;
