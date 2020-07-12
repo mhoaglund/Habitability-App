@@ -145,9 +145,9 @@ $(document).ready(function () {
                         $('#shareable').show();
                         $('#skip').hide();
 
-                        $([document.documentElement, document.body]).animate({
-                            scrollTop: $("#intake").offset().top
-                        }, 1000);
+                        // $([document.documentElement, document.body]).animate({
+                        //     scrollTop: $("#intake").offset().top
+                        // }, 1000);
 
                         setTimeout(function () {
                             $.ajax({

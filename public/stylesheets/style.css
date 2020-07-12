@@ -10,6 +10,7 @@ html,body{
   padding: 0;
   margin: 0;
   background-color: black;
+  font-size: 100%;
 }
 
 body {
@@ -26,18 +27,15 @@ select {
 
 a {
   color: white;
-  font-size: 3rem;
   letter-spacing: 0.55rem;
   cursor: pointer;
 }
 
 #about a{
-  font-size: 2rem;
 }
 
 h3{
   letter-spacing: 0.55vmin;
-  font-size: 2.2rem;
   font-weight: 300;
 }
 
@@ -57,15 +55,12 @@ textarea{
 }
 
 .button {
-  background-color: #4CAF50;
-  /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
 }
 
 section.frame,
@@ -218,7 +213,6 @@ section.expos h3 {
   grid-column: 2;
   text-align: center;
   margin: 0;
-  font-size: 4vmin;
   letter-spacing: 0.55vmin;
   max-width: 50vmin;
 }
@@ -362,9 +356,12 @@ section#output{
   align-items: center;
   justify-content: center;
   z-index: 0;
-  font-size: 1.5rem;
   text-align: center;
 }
+
+  .back span{
+    margin: 1.5rem;
+  }
 
 /* Spinner */
 #spinner{
@@ -423,7 +420,6 @@ input[type="text"]{
   border: none;
   background-color: black;
   border-bottom: 2px solid white;
-  font-size: 2rem;
   color: white;
   -webkit-appearance: none;
   font-family: 'Open Sans', sans-serif;
@@ -453,7 +449,6 @@ section#intake form input[type="submit"] {
 #notes_panel .patchnotes{
   background: white;
   color: #1d4661;
-  font-size: 1.3rem;
   padding: 1rem;
 }
 
@@ -652,11 +647,10 @@ textarea {
 }
 
 .exit-btn, .upload-btn{
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 2rem;
-    text-align: center;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
   display: flex;
   flex-flow: column;
   align-content: center;
@@ -716,7 +710,7 @@ textarea {
 .exitform{
   position: absolute;
   top: 2rem;
-  right: 2rem;
+  right: 2.7rem;
 }
 
 #about .exitform{
@@ -914,7 +908,6 @@ textarea {
 
 #about input[type='submit'] {
   display: block;
-  font-size: 2rem;
   padding: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -992,8 +985,12 @@ textarea {
     margin-top: 1rem;
   }
   .exit-btn,
-  .upload-btn {
+  .upload-btn,
+  span {
     font-size: 1.2rem;
+  }
+  .back h3{
+    font-size: 1.5rem;
   }
   .post-body {
     display: grid;
@@ -1052,7 +1049,7 @@ textarea {
   input[type='text'],
   input[type='number'],
   textarea {
-    font-size: 2rem;
+    /* font-size: 2rem; */
     font-family: "Open Sans";
   }
 }
