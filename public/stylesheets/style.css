@@ -105,7 +105,7 @@ section#athospitals .text-frame {
 }
 
 section#athome .text-frame {
-  grid-template-rows: 1.3fr 2fr;
+  grid-template-rows: 1.1fr 2fr;
 }
 
 section#planet .text-frame {
@@ -934,6 +934,13 @@ textarea {
       justify-items: center;
       align-items: center;
     }
+
+    h3{
+      font-size: 1.5rem;
+    }
+    section#thestreets .text-frame {
+      grid-template-rows: 12rem 1fr;
+    }
   .input-wrapper .portal {
     width: 50vmin;
     height: 50vmin;
@@ -990,7 +997,7 @@ textarea {
     font-size: 1.2rem;
   }
   .back h3{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .post-body {
     display: grid;
@@ -1018,10 +1025,39 @@ textarea {
   background-size: 125%;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 900px) {
+  section#whoarewe {
+    height: 140vmax;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  section#whoarewe {
+    height: 145vmax;
+  }
+}
+
+@media only screen and (min-width: 1150px) {
+  section#whoarewe {
+    height: 158vmax;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+
+  html,
+  body,
+  .exit-btn,
+  .upload-btn,
+  span
+  {
+    font-size: 18px;
+  }
+
   main {
     background-color: grey;
   }
+
   section#planet {
     background-image: url('../images/XL/H_main01.jpg');
   }
@@ -1049,13 +1085,12 @@ textarea {
   input[type='text'],
   input[type='number'],
   textarea {
-    /* font-size: 2rem; */
     font-family: "Open Sans";
   }
-}
 
-@media only screen and (min-width: 1450px) {
-
+  #skip{
+    font-size: 2rem;
+  }
   .flip-container,
   .front,
   .back,
@@ -1079,5 +1114,53 @@ textarea {
     section.double-frame,
     section#see {
       width: 100vmin;
+      max-width: 800px;
+    }
+
+    section#intake #intakeform{
+      max-width: 800px;
+    }
+
+    section#whoarewe,
+    section#see,
+    section#intake #intakeform .eye {
+      background-size: 800px;
+    }
+    section#see{
+      height: 28vmin;
+    }
+
+    section#intake #intakeform .eye {
+      height: 32vmin;
+    }
+
+    section#intake{
+      padding-bottom: 0;
+    }
+
+    .eye .lower-portal:nth-child(2) {
+      left: 10.1vmin;
+      top: 1.55vmin;
+    }
+
+    .eye .lower-portal:first-child {
+      right: 9.3vmin;
+      top: 1.95vmin;
+    }
+
+    .eye .lower-portal {
+      height: 16vmin;
+      width: 16vmin;
+      border-radius: 29vmin;
+      top: 3.6vmin;
+    }
+
+    /* Text tweaks for desktop */
+    section#thestreets .text-frame {
+      grid-template-rows: 12rem 1fr;
+    }
+
+    section#athome .text-frame {
+      grid-template-rows: 1.1fr 2fr;
     }
 }

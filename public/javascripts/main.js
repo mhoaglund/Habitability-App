@@ -267,6 +267,7 @@ var loadFile = function (event) {
     if(!showSubmit){
         showSubmit = true;
     }
+
     updateSubmitBtnState(showSubmit);
     var targetid = event.target.id.split('-')[0];
     var portalid = '#' + event.target.id.split('-')[0] + '-portal';
