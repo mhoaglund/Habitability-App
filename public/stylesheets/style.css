@@ -1095,15 +1095,15 @@ textarea {
   .front,
   .back,
   .nonflip {
-    width: 20vw;
-    height: 20vw;
+    width: 365px;
+    height: 365px;
     /* position: relative; */
   }
 
   .flipper {
     transition: 0.8s;
-    width: 20vw;
-    height: 20vw;
+    width: 365px;
+    height: 365px;
     transform-style: preserve-3d;
     position: relative;
   }
@@ -1131,7 +1131,7 @@ textarea {
     }
 
     section#intake #intakeform .eye {
-      height: 32vmin;
+      height: 31.5vmin;
     }
 
     section#intake{
@@ -1139,18 +1139,18 @@ textarea {
     }
 
     .eye .lower-portal:nth-child(2) {
-      left: 10.1vmin;
-      top: 1.55vmin;
+      left: 130px;
+      top: 20px;
     }
 
     .eye .lower-portal:first-child {
-      right: 9.3vmin;
-      top: 1.95vmin;
+        right: 122px;
+        top: 29px;
     }
 
     .eye .lower-portal {
-      height: 16vmin;
-      width: 16vmin;
+      height: 209px;
+      width: 209px;
       border-radius: 29vmin;
       top: 3.6vmin;
     }
@@ -1162,5 +1162,14 @@ textarea {
 
     section#athome .text-frame {
       grid-template-rows: 1.1fr 2fr;
+    }
+
+    section.frame,
+    section.smframe{
+      background-size: 800px;
+      max-height: 1300px;
+    }
+    section.double-frame {
+      max-height: 2000px;
     }
 }
