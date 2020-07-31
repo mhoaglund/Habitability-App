@@ -25,7 +25,6 @@ router.post('/', [
         var validated = false;
         const errors = validationResult(req);
         console.log(errors);
-        // Just a do-nothing change here...
 
         request(verificationURL, function(error,response,body){
             body = JSON.parse(body);
