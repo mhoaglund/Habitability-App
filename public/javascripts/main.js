@@ -92,26 +92,43 @@ $(document).ready(function () {
 
     $('#contactform').submit(function (e) {
         e.preventDefault();
-        var form = $(this);
+        var _token = undefined;
         $('#submitcontact').prop("disabled", true);
-        $.ajax({
-            type: "POST",
-            url: "/contact",
-            data: form.serialize(),
-            success: function(data){
-                toggleFormElement('#sentalert');
-                setTimeout(function () {
-                    $('#about').hide();
-                    $('#sentalert').removeClass('fade-in');
-                    $('#submitcontact').prop("disabled", false);
-                }, 2000);
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LcBZLgZAAAAAFna-IfrqWKXZ-jQBd2cadlgL5Mx', {
+                    action: 'validate_captcha'
+                }).then(function (token) {
+                // Add your logic to submit to your backend server here.
 
-            },
-            error: function (e) {
-                $('#about').hide();
-                console.log(e);
-            }
-        })
+                _token = token;
+                if(_token){
+                    var form = $(this);
+                    var _data = {
+                        forminput: form.serialize(),
+                        token: _token
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/contact",
+                        data: _data,
+                        success: function (data) {
+                            toggleFormElement('#sentalert');
+                            setTimeout(function () {
+                                $('#about').hide();
+                                $('#sentalert').removeClass('fade-in');
+                                $('#submitcontact').prop("disabled", false);
+                            }, 2000);
+
+                        },
+                        error: function (e) {
+                            $('#about').hide();
+                            console.log(e);
+                        }
+                    })
+                }
+            });
+        });
+
     });
 
     $('#intakeform').submit(function (e) {
