@@ -198,6 +198,8 @@ section#intake #intakeform .eye{
   top: 3.6vmin;
   background-size: cover;
   background-repeat: no-repeat;
+  transform: rotateX(0deg);
+  image-orientation: from-image;
 }
 .eye .lower-portal:first-child {
   right: 15.3vmin;
@@ -206,6 +208,10 @@ section#intake #intakeform .eye{
 .eye .lower-portal:nth-child(2) {
   left: 16.3vmin;
   top: 2.5vmin;
+}
+
+.own_post .flipper .front {
+  image-orientation: from-image;
 }
 
 section.expos h3 {
