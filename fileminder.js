@@ -54,8 +54,6 @@ function clean(all = false){
     }
 }
 
-//TODO: add routine to wipe generated images out of the bin directory
-
 toRemove = [];
 module.exports.toRemove = this.toRemove
 module.exports.clean = clean
