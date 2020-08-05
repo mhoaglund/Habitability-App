@@ -1134,18 +1134,19 @@ section#intake form .upload-btn:nth-of-type(2) {
     section.frame,
     section.double-frame,
     section#see {
-      width: 100vmin;
-      max-width: 800px;
+
+      width: 800px;
     }
 
     section#intake #intakeform{
-      max-width: 800px;
+      width: 800px;
     }
 
     section#whoarewe,
     section#see,
     section#intake #intakeform .eye {
       background-size: 800px;
+      min-height: 280px;
     }
     section#see{
       height: 28vmin;
