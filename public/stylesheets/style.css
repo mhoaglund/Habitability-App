@@ -664,6 +664,21 @@ textarea {
   justify-items: center;
 }
 
+section#intake form .upload-btn{
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+}
+
+section#intake form .upload-btn:first-of-type {
+  grid-column: 2;
+
+}
+
+section#intake form .upload-btn:nth-of-type(2) {
+  grid-column: 4;
+}
+
 .flow-btn{
   border: 1px solid white;
   padding: 0.5rem;
@@ -1136,12 +1151,16 @@ textarea {
       height: 28vmin;
     }
 
-    section#intake #intakeform .eye {
+    /* section#intake #intakeform .eye {
       height: 31.5vmin;
-    }
+    } */
 
     section#intake{
       padding-bottom: 0;
+    }
+
+    section#intake form{
+      grid-template-rows: 265px 4rem auto;
     }
 
     .eye .lower-portal:nth-child(2) {

@@ -118,7 +118,6 @@ $(document).ready(function () {
                                 $('#sentalert').removeClass('fade-in');
                                 $('#submitcontact').prop("disabled", false);
                             }, 2000);
-
                         },
                         error: function (e) {
                             $('#about').hide();
