@@ -17,7 +17,7 @@ router.post('/', [
     ], 
     function (req, res, next) {
         if (req.body['token'] === undefined || req.body['token'] === '' || req.body['token'] === null) {
-            console.log("Bad");
+            return res.sendStatus(403);
         }
 
         const reCaptchaSecret = process.env.RCP_SECRET;

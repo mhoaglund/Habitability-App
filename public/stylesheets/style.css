@@ -443,6 +443,11 @@ section#intake form input[type="submit"] {
   width: 28vmin;
   justify-self: center;
   display: none;
+  z-index: 1;
+}
+
+#submitwrapper .upload-btn{
+  margin: auto;
 }
 
 #notes_panel a{
@@ -604,7 +609,7 @@ canvas{
   animation-iteration-count: 1;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
 }
 
 .input-wrapper .portal,
@@ -668,6 +673,7 @@ section#intake form .upload-btn{
     width: 50%;
     align-self: center;
     justify-self: center;
+    z-index: 1;
 }
 
 section#intake form .upload-btn:first-of-type {
@@ -1133,8 +1139,10 @@ section#intake form .upload-btn:nth-of-type(2) {
     section#intake,
     section.frame,
     section.double-frame,
-    section#see {
-
+    section#see,
+    section#shareable,
+    section.thankyou
+    section#shareable img{
       width: 800px;
     }
 
@@ -1193,6 +1201,9 @@ section#intake form .upload-btn:nth-of-type(2) {
     section.frame,
     section.smframe{
       background-size: 800px;
+      /* max-height: 1300px; */
+    }
+    section#whoarewe{
       max-height: 1300px;
     }
     section.double-frame {

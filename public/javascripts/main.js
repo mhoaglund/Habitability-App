@@ -132,78 +132,101 @@ $(document).ready(function () {
 
     $('#intakeform').submit(function (e) {
         e.preventDefault();
+        var _token = undefined;
         $('#submitall').prop("disabled", true);
         $('#intakeform').css({'opacity':'0.5'});
         $("#spinner").css({
             'display': 'flex'
         });
-        var form = $('#intakeform')[0];
-        var data = new FormData(form);
-        $.ajax({
-            type: "POST",
-            enctype: "multipart/form-data",
-            url: "/collection",
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 60000,
-            success: function(reply){
-                console.log(reply);
-                if (reply.oall === 'Success') {
-                    if (reply.myrowkey){
-                        //If we created a row, create a rule to hide it if it comes back from the server.
-                        //We're creating the realtime experience by showing the user's images in the feed on the client.
-                        myrowkey = reply.myrowkey;
-                        hasSubmitted = true;
-                        $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
-
-                        $('#shareable').show();
-                        $('#skip').hide();
-
-                        // $([document.documentElement, document.body]).animate({
-                        //     scrollTop: $("#intake").offset().top
-                        // }, 1000);
-
-                        setTimeout(function () {
-                            $.ajax({
-                                type: "GET",
-                                url: "/generate?RowKey=" + myrowkey,
-                                timeout: 90000,
-                                success: function (reply) {
-                                    console.log(reply);
-                                    mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
-                                    //mypostable = '/generate/show?postimg=' + reply.file;
-                                    var mypostimg = "<img src='" + "https://habdata.blob.core.windows.net/habdatablob/" + reply.file + "'/>"
-                                    $('#shareable').append(mypostimg);
-                                    $('#awaitshareable').hide();
-                                    $('#shareable h3').hide();
-                                    $('#shareable .floatingshare').show();
-                                    $('#share').attr('href', mypostable);
-                                },
-                                error: function (e) {
-                                    console.log(e);
-                                    //TODO show post error state
-                                }
-                            })
-                        }, 5000);
-                    }
-                    retrievePosts();
+        // var data = new FormData(form);
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LcBZLgZAAAAAFna-IfrqWKXZ-jQBd2cadlgL5Mx', {
+                action: 'validate_captcha'
+            }).then(function (token) {
+                if(!token){
+                    alert("recaptcha token issues");
+                    return;
                 }
-                displayOwnPost();
-                document.getElementById("intakeform").reset();
-                deactivateForm();
-                $("#spinner").css({
-                    'display': 'none'
-                });
-            },
-            error: function(e){
-                console.log(e);
-                $("#spinner").css({
-                    'display': 'none'
-                });
-            }
-        })
+                _token = token;
+                $('input#rcptoken').val(_token);
+                console.log(_token);
+                var form = $('#intakeform')[0];
+                var _data = new FormData(form);
+                // Add your logic to submit to your backend server here.
+                $.ajax({
+                    type: "POST",
+                    enctype: "multipart/form-data",
+                    url: "/collection",
+                    data: _data,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 60000,
+                    success: function (reply) {
+                        console.log(reply);
+                        if (reply.oall === 'Success') {
+                            if (reply.myrowkey) {
+                                //If we created a row, create a rule to hide it if it comes back from the server.
+                                //We're creating the realtime experience by showing the user's images in the feed on the client.
+                                myrowkey = reply.myrowkey;
+                                hasSubmitted = true;
+                                $("<style type='text/css'> [id='" + myrowkey + "'] { display: none;} </style>").appendTo("head");
+
+                                $('#shareable').show();
+                                $('#skip').hide();
+
+                                // $([document.documentElement, document.body]).animate({
+                                //     scrollTop: $("#intake").offset().top
+                                // }, 1000);
+
+                                setTimeout(function () {
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/generate?RowKey=" + myrowkey,
+                                        timeout: 90000,
+                                        success: function (reply) {
+                                            console.log(reply);
+                                            mypostable = "https://habdata.blob.core.windows.net/habdatablob/" + reply.file;
+                                            //mypostable = '/generate/show?postimg=' + reply.file;
+                                            var mypostimg = "<img src='" + "https://habdata.blob.core.windows.net/habdatablob/" + reply.file + "'/>"
+                                            $('#shareable').append(mypostimg);
+                                            $('#awaitshareable').hide();
+                                            $('#shareable h3').hide();
+                                            $('#shareable .floatingshare').show();
+                                            $('#share').attr('href', mypostable);
+                                        },
+                                        error: function (e) {
+                                            console.log(e);
+                                            
+                                            //TODO show post error state
+                                        }
+                                    })
+                                }, 5000);
+                            }
+                            retrievePosts();
+                        }
+                        displayOwnPost();
+                        document.getElementById("intakeform").reset();
+                        deactivateForm();
+                        $("#spinner").css({
+                            'display': 'none'
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e);
+                        $("#spinner").css({
+                            'display': 'none'
+                        });
+                        alert("An error has occurred with your submission. Only images up to 6mb are accepted.");
+                        setTimeout(function () {
+                            //refresh
+                            location.reload();
+                        }, 3000);
+                    }
+                })
+            });
+        });
+
     });
 });
 
