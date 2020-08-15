@@ -1,23 +1,23 @@
 each post in posts
   .post-body(id = post.id)
     p.hidden #{post.Timestamp}
-    if (post.pic1 && post.note1)
+    if (post.pic1)
       .flip-container.post
         .flipper
-          if post.pic1
-            div.front(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic1})'})
-          if post.note1
-            div.back
+          div.front(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic1})'})
+          div.back
+            if (post.note1)
               span #{post.note1}
-    else if post.pic1
-      div.nonflip(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic1})'})
-    if (post.pic2 && post.note2)
+            else
+              span <strong>...</strong>
+    if (post.pic2)
       .flip-container.post
         .flipper
-          if post.pic2
-            div.front(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
-          if post.note2
-            div.back
+          div.front(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
+          div.back
+            if (post.note2)
               span #{post.note2}
-    else if post.pic2
-      div.nonflip(style={'background-image': 'url(https://habdata.blob.core.windows.net/habdatablob/#{post.pic2})'})
+            else
+              span <strong>...</strong>
+
+
