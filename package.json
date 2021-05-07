@@ -24,7 +24,7 @@
     "nodemailer": "^6.4.10",
     "puppeteer": "^4.0.0",
     "request": "^2.88.2",
-    "underscore": "^1.10.2",
+    "underscore": "^1.12.1",
     "uuid": "^8.0.0"
   },
   "engines": {
