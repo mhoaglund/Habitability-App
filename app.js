@@ -8,7 +8,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var collectionRouter = require('./routes/collection');
 var generateRouter = require('./routes/generate');
-var contactRouter = require('./routes/contact');
 
 var app = express();
 const config = require('config');
@@ -29,7 +28,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/collection', collectionRouter);
 app.use('/generate', generateRouter);
-app.use('/contact', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

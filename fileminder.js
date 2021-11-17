@@ -46,7 +46,7 @@ function clean(all = false){
                     }
                 })
             } catch (err) {
-                continue
+                throw err;
             }
         }, function (err) {
             toRemove = [];
